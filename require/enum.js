@@ -1,125 +1,147 @@
 var ENUM = {
   Moral: {
-  lawfulgood: 1,
-  lawfulneutral: 2,
-  lawfulevil: 3,
-  neutralgood: 4,
-  trueneutral: 5,
-  neutralevil: 6,
-  chaoticgood: 7,
-  chaoticneutral: 8,
-  chaoticevil: 9,
-  properties: {
-    1: { 
-          id: "lawfulgood", 
-          name: "Lawful Good", 
-          desc: "TBD",
-          value: 1 
-       },
-    2: { 
-          id: "lawfulneutral", 
-          name: "Lawful Neutral", 
-          desc: "TBD",
-          value: 2 
-       },
-    3: { 
-          id: "lawfulevil", 
-          name: "Lawful Evil", 
-          desc: "TBD",
-          value: 3 
-       },
-    4: { 
-          id: "neutralgood", 
-          name: "Neutral Good", 
-          desc: "TBD",
-          value: 4 
-       },
-    5: { 
-          id: "trueneutral", 
-          name: "True Neutral", 
-          desc: "TBD",
-          value: 5 
-       },
-    6: { 
-          id: "neutralevil", 
-          name: "Neutral Evil", 
-          desc: "TBD",
-          value: 6 
-       },
-    7: { 
-          id: "chaoticgood", 
-          name: "Chaotic Good", 
-          desc: "TBD",
-          value: 7 
-       },
-    8: { 
-          id: "chaoticneutral", 
-          name: "Chaotic Neutral", 
-          desc: "TBD",
-          value: 8 
-       },
-    9: { 
-          id: "chaoticevil", 
-          name: "Chaotic Evil", 
-          desc: "TBD",
-          value: 9 
-       }
-  }
+    lawfulgood: 1,
+    lawfulneutral: 2,
+    lawfulevil: 3,
+    neutralgood: 4,
+    trueneutral: 5,
+    neutralevil: 6,
+    chaoticgood: 7,
+    chaoticneutral: 8,
+    chaoticevil: 9,
+    properties: {
+      1: { 
+            id: "lawfulgood", 
+            name: "Lawful Good", 
+            desc: "TBD",
+            value: 1 
+         },
+      2: { 
+            id: "lawfulneutral", 
+            name: "Lawful Neutral", 
+            desc: "TBD",
+            value: 2 
+         },
+      3: { 
+            id: "lawfulevil", 
+            name: "Lawful Evil", 
+            desc: "TBD",
+            value: 3 
+         },
+      4: { 
+            id: "neutralgood", 
+            name: "Neutral Good", 
+            desc: "TBD",
+            value: 4 
+         },
+      5: { 
+            id: "trueneutral", 
+            name: "True Neutral", 
+            desc: "TBD",
+            value: 5 
+         },
+      6: { 
+            id: "neutralevil", 
+            name: "Neutral Evil", 
+            desc: "TBD",
+            value: 6 
+         },
+      7: { 
+            id: "chaoticgood", 
+            name: "Chaotic Good", 
+            desc: "TBD",
+            value: 7 
+         },
+      8: { 
+            id: "chaoticneutral", 
+            name: "Chaotic Neutral", 
+            desc: "TBD",
+            value: 8 
+         },
+      9: { 
+            id: "chaoticevil", 
+            name: "Chaotic Evil", 
+            desc: "TBD",
+            value: 9 
+         }
+    },
+    getDetails: function() {
+      let str = `Here is a list of all available moral alignments:\n\n`;
+      for ( let p in this.properties ) {
+        str += `**${this.properties[p].id}** :: ${this.properties[p].name}\n${this.properties[p].desc}\n\n`;
+      }
+      return str;
+    } 
 },
 
   Sit: {
-  greeting: 1,
-  feeling: 2,
-  netalert: 3,
-  herosuccess: 4,
-  herofailure: 5,
-  accepts: 6,
-  declines: 7,
-  wins: 8,
-  loses: 9,
-  battles: 10,
-  cheats: 11,
-  bails: 12,
-  disobeys: 13,
-  confused: 14,
-  properties: {
-    1: { id: "greeting", name: "Greets Someone", value: 1 },
-    2: { id: "feeling", name: "Is Asked 'How are you?'", value: 2 },
-    3: { id: "netalert", name: "Jacks In during a NetAlert", value: 3 },
-    4: { id: "herosuccess", name: "Saves the day during a NetAlert", value: 4 },
-    5: { id: "herofailure", name: "Failed to save the day during a NetAlert", value: 5 },
-    6: { id: "accepts", name: "Accepts a challenge from someone (at NetOp's orders)", value: 6 },
-    7: { id: "declines", name: "Declines a challenge from someone (at NetOp's orders)", value: 7 },
-    8: { id: "wins", name: "Wins a battle", value: 8 },
-    9: { id: "loses", name: "Loses a battle", value: 9 },
-    10: { id: "battles", name: "Fights during a battle", value: 10 },
-    11: { id: "cheats", name: "Cheats during a battle", value: 11 },
-    12: { id: "bails", name: "Jacks Out during a battle", value: 12 },
-    13: { id: "disobeys", name: "Disobeys the NetOp's orders", value: 13 },
-    14: { id: "confused", name: "Confused by the NetOp's poorly typed command", value: 14 }
-  }
+    greeting: 1,
+    feeling: 2,
+    netalert: 3,
+    herosuccess: 4,
+    herofailure: 5,
+    accepts: 6,
+    declines: 7,
+    wins: 8,
+    loses: 9,
+    battles: 10,
+    cheats: 11,
+    bails: 12,
+    disobeys: 13,
+    confused: 14,
+    properties: {
+      1: { id: "greeting", desc: "Greets Someone", value: 1 },
+      2: { id: "feeling", desc: "Is Asked 'How are you?'", value: 2 },
+      3: { id: "netalert", desc: "Jacks In during a NetAlert", value: 3 },
+      4: { id: "herosuccess", desc: "Saves the day during a NetAlert", value: 4 },
+      5: { id: "herofailure", desc: "Failed to save the day during a NetAlert", value: 5 },
+      6: { id: "accepts", desc: "Accepts a challenge from someone (at NetOp's orders)", value: 6 },
+      7: { id: "declines", desc: "Declines a challenge from someone (at NetOp's orders)", value: 7 },
+      8: { id: "wins", desc: "Wins a battle", value: 8 },
+      9: { id: "loses", desc: "Loses a battle", value: 9 },
+      10: { id: "battles", desc: "Fights during a battle", value: 10 },
+      11: { id: "cheats", desc: "Cheats during a battle", value: 11 },
+      12: { id: "bails", desc: "Jacks Out during a battle", value: 12 },
+      13: { id: "disobeys", desc: "Disobeys the NetOp's orders", value: 13 },
+      14: { id: "confused", desc: "Confused by the NetOp's poorly typed command", value: 14 }
+    },
+    getDetails: function() {
+      let str = `Here is a list of all current situation keywords for dialogue tables:\n\n`;
+      for ( let p in this.properties ) {
+        str += `**${this.properties[p].id}**\n${this.properties[p].desc}\n\n`;
+      }
+      return str;
+    }
 },
 
   Feeling: {
-  happy: 1,
-  content: 2,
-  okay: 3,
-  withdrawn: 4,
-  upset: 5,
-  properties: {
-    1: { id: "happy", name: "Smiling so happy", value: 1 },
-    2: { id: "content", name: "Satisfied with life", value: 2 },
-    3: { id: "okay", name: "Not feeling anything in particular", value: 3 },
-    4: { id: "withdrawn", name: "Not interested in talking", value: 4 },
-    5: { id: "upset", name: "Raging mad or terribly hurt", value: 5 }
-  }
-},
+    happy: 1,
+    content: 2,
+    okay: 3,
+    withdrawn: 4,
+    upset: 5,
+    properties: {
+      1: { id: "happy", desc: "Smiling, so happy!", value: 1 },
+      2: { id: "content", desc: "Satisfied with life", value: 2 },
+      3: { id: "okay", desc: "Not feeling anything in particular", value: 3 },
+      4: { id: "withdrawn", desc: "Not interested in talking", value: 4 },
+      5: { id: "upset", desc: "Raging mad or terribly hurt", value: 5 }
+    },
+    getDetails: function() {
+      let str = `Here is a list of all current feeling keywords for dialogue tables:\n\n`;
+      for ( let p in this.properties ) {
+        str += `**${this.properties[p].id}**\n${this.properties[p].desc}\n\n`;
+      }
+      return str;
+    }
+  },
   
   Personality: {
     default: 1,
     properties: {
       1: { 
         id: "default",
+        desc: "Default dialogue lines for anyone",
         value: 1,
         modifiers: new Modifiers( {
           greeting: { mod: null, dialogue: new Dialogue( { 
@@ -215,6 +237,13 @@ var ENUM = {
           } )  }
         } )
       }
+    },
+    getDetails: function() {
+      let str = `Here is a list of all dialogue-related personalities:\n\n`;
+      for ( let p in this.properties ) {
+        str += `**${this.properties[p].id}**\n${this.properties[p].desc}\n\n`;
+      }
+      return str;
     }
   },
 
@@ -968,9 +997,13 @@ var ENUM = {
     },
     checkVariant: function(b, v, count) {
       if ( v ) {
-        return getBotEmbedFoot( v.custom.name, v.custom.img, v.custom.color,
-          `${formatCmd( "create NAME "+b.id.toUpperCase()+" "+v.id.toUpperCase() )}`,
-          `Variant ${count.current} out of ${count.total}`);
+        return { 
+          name: v.custom.name, 
+          thumbnail: v.custom.img, 
+          color: v.custom.color,
+          description: `${formatCmd( "create NAME "+b.id.toUpperCase()+" "+v.id.toUpperCase() )}`,
+          footer: `Variant ${count.current} out of ${count.total}`
+        };
       } else { return null; }
     }
   },
@@ -1037,7 +1070,7 @@ var ENUM = {
     getDetails: function() {
       let str = `Here is a list of all planned battle modes:\n\n`;
       for ( let p in this.properties ) {
-        str += `${this.properties[p].name}\n${this.properties[p].desc}\n\n`;
+        str += `**${this.properties[p].name}**\n${this.properties[p].desc}\n\n`;
       }
       return str;
     }
