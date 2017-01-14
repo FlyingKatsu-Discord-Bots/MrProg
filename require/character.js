@@ -7,7 +7,7 @@ var CHARACTER = {
   this.xp = 0;
   this.mood = 1;
   this.numResets = 0;
-  this.custom = new Customization( );
+  this.custom = new Customization();
 
   this.getEmbed = function(msg, situation) {
     return {
@@ -45,11 +45,16 @@ var CHARACTER = {
   this.getAlignment = function() {
     return this.custom.alignment || this.getVariant().custom.alignment;
   };
+  this.getPersonality = function() {
+    return this.custom.personality || this.getVariant().custom.personality;
+  };
   this.getModifier = function( situation ) {
-    return this.custom.modifiers[situation].mod || this.getVariant().custom.modifiers[situation].mod;
+    return this.custom.modifiers[situation].mod || 
+      ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].modifiers[situation].mod;
   };
   this.getDialogue = function( situation, feeling ) {
-    return this.custom.modifiers[situation].dialogue[feeling] || this.getVariant().custom.modifiers[situation].dialogue[feeling];
+    return this.custom.modifiers[situation].dialogue[feeling] || 
+      ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].modifiers[situation].dialogue[feeling];
   };
 
   // Custom SETTERS
@@ -70,6 +75,9 @@ var CHARACTER = {
   };
   this.setAlignment = function( v ) {
     this.custom.alignment = v;
+  };
+  this.setPersonality = function( v ) {
+    this.custom.personality = v;
   };
   this.setModifier = function( situation, mod ) {
     this.custom.modifiers[situation].mod = mod;

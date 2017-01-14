@@ -1,14 +1,14 @@
 var ENUM = {
   Moral: {
-  LawfulGood: 1,
-  LawfulNeutral: 2,
-  LawfulEvil: 3,
-  NeutralGood: 4,
-  TrueNeutral: 5,
-  NeutralEvil: 6,
-  ChaoticGood: 7,
-  ChaoticNeutral: 8,
-  ChaoticEvil: 9,
+  lawfulgood: 1,
+  lawfulneutral: 2,
+  lawfulevil: 3,
+  neutralgood: 4,
+  trueneutral: 5,
+  neutralevil: 6,
+  chaoticgood: 7,
+  chaoticneutral: 8,
+  chaoticevil: 9,
   properties: {
     1: { 
           id: "lawfulgood", 
@@ -114,6 +114,109 @@ var ENUM = {
     5: { id: "upset", name: "Raging mad or terribly hurt", value: 5 }
   }
 },
+  
+  Personality: {
+    default: 1,
+    properties: {
+      1: { 
+        id: "default",
+        value: 1,
+        modifiers: new Modifiers( {
+          greeting: { mod: null, dialogue: new Dialogue( { 
+            happy: "Hello, @user!", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          feeling: { mod: null, dialogue: new Dialogue( { 
+            happy: "I'm doing great! How are you, @user?", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          netalert: { mod: null, dialogue: new Dialogue( { 
+            happy: "Let's do this, @owner!", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          herosuccess: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          herofailure: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          accepts: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          declines: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          wins: { mod: null, dialogue: new Dialogue( { 
+            happy: "Great teamwork, @owner!", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          loses: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          battles: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          cheats: { mod: null, dialogue: new Dialogue( { 
+            happy: "", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          bails: { mod: null, dialogue: new Dialogue( { 
+            happy: "Let's try again next time!", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } ) },
+          confused: { mod: null, dialogue: new Dialogue( { 
+            happy: "@User, I don't understand...", 
+            content: "", 
+            okay: "", 
+            withdrawn: "", 
+            upset: "" 
+          } )  }
+        } )
+      }
+    }
+  },
 
   Command: {
     shutdown: 1,
@@ -456,113 +559,113 @@ var ENUM = {
             variants: {
                 default: {
                   id: "default",
-                  custom: new Customization( {
+                  custom: {
                     name: "NormNav1.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Default.png",
                     color: "#88C040",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 pink: {
                   id: "pink",
-                  custom: new Customization( {
+                  custom: {
                     name: "Navi-F.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Default2.png",
                     color: "#F7A8B0",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 army: {
                   id: "army",
-                  custom: new Customization( {
+                  custom: {
                     name: "Navi-W.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Default3.png",
                     color: "#AF6828",
                     capacity: "2",
-                    alignment: MoralEnum.LawfulNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "lawfulneutral",
+                    personality: "default"
+                  }
                 },
                 grumpy: {
                   id: "grumpy",
-                  custom: new Customization( {
+                  custom: {
                     name: "NormNav4.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Grumpy.png",
                     color: "#D0402F",
                     capacity: "2",
-                    alignment: MoralEnum.ChaoticNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "chaoticneutral",
+                    personality: "default"
+                  }
                 },
                 ranked: {
                   id: "ranked",
-                  custom: new Customization( {
+                  custom: {
                     name: "RankedNorm.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Ranked.png",
                     color: "#4C434C",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 purple: {
                   id: "purple",
-                  custom: new Customization( {
+                  custom: {
                     name: "NormNav2.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Purple.png",
                     color: "#993090",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  } 
                 },
                 aqua: {
                   id: "aqua",
-                  custom: new Customization( {
+                  custom: {
                     name: "Navi-A.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Aqua.png",
                     color: "#016891",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 blue: {
                   id: "blue",
-                  custom: new Customization( {
+                  custom: {
                     name: "NormNav3.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Blue.png",
                     color: "#4E50A2",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 black: {
                   id: "black",
-                  custom: new Customization( {
+                  custom: {
                     name: "NormNavX.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/BlackRed.png",
                     color: "#000000",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 evil: {
                   id: "evil",
-                  custom: new Customization( {
+                  custom: {
                     name: "EvilNorm.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Norm/Evil.png",
                     color: "#9D1C4C",
                     capacity: "2",
-                    alignment: MoralEnum.NeutralEvil,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "neutralevil",
+                    personality: "default"
+                  }
                 }
             }
         },
@@ -575,47 +678,47 @@ var ENUM = {
             variants: {
               egg: {
                 id: "egg",
-                custom: new Customization( {
+                custom: {
                   name: "EggHead.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Egg.png",
                   color: "#824BB0",
                   capacity: "2",
-                  alignment: MoralEnum.TrueNeutral,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "trueneutral",
+                  personality: "default"
+                }
               },
               chick: {
                 id: "chick",
-                custom: new Customization( {
+                custom: {
                   name: "FemaleNavi.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Chick.png",
                   color: "#F29231",
                   capacity: "2",
-                  alignment: MoralEnum.TrueNeutral,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "trueneutral",
+                  personality: "default"
+                }
               },
               female: {
                 id: "female",
-                custom: new Customization( {
+                custom: {
                   name: "FemaleNavi.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Female.png",
                   color: "#F9A91F",
                   capacity: "2",
-                  alignment: MoralEnum.TrueNeutral,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "trueneutral",
+                  personality: "default"
+                }
               },
               male: {
                 id: "male",
-                custom: new Customization( {
+                custom: {
                   name: "MaleNavi.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Male.png",
                   color: "#BF42A1",
                   capacity: "2",
-                  alignment: MoralEnum.TrueNeutral,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "trueneutral",
+                  personality: "default"
+                }
               }
             }
         },
@@ -628,25 +731,25 @@ var ENUM = {
             variants: {
               default: {
                 id: "default",
-                custom: new Customization( {
+                custom: {
                   name: "NetOffical.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Official/NetOfficial.png",
                   color: "#E07828",
                   capacity: "2",
-                  alignment: MoralEnum.LawfulGood,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "lawfulgood",
+                  personality: "default"
+                }
               },
               robocop: {
                 id: "robocop",
-                custom: new Customization( {
+                custom: {
                   name: "NetPolice.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Official/NetPolice.png",
                   color: "#C86818",
                   capacity: "2",
-                  alignment: MoralEnum.LawfulGood,
-                  modifiers: sampleDialogue
-                } )
+                  alignment: "lawfulgood",
+                  personality: "default"
+                } 
               }
             }
         },
@@ -659,25 +762,25 @@ var ENUM = {
             variants: {
               default: {
                 id: "default",
-                custom: new Customization( {
+                custom: {
                   name: "HeelNavi.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Heel/Heel.png",
                   color: "#704080",
                   capacity: "2",
-                  alignment: MoralEnum.ChaoticNeutral,
-                  modifiers: sampleDialogue
-                  } )
+                  alignment: "chaoticneutral",
+                  personality: "default"
+                  }
               },
               mafia: {
                 id: "mafia",
-                custom: new Customization( {
+                custom: {
                   name: "MafiaNavi.EXE",
                   img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Heel/Mafia.png",
                   color: "#585870",
                   capacity: "2",
-                  alignment: MoralEnum.ChaoticEvil,
-                  modifiers: sampleDialogue
-                  } )
+                  alignment: "chaoticevil",
+                  personality: "default"
+                  }
               }
             }
         },
@@ -706,91 +809,91 @@ var ENUM = {
             variants: {
                 protoman: {
                   id: "protoman",
-                  custom: new Customization( {
+                  custom: {
                     name: "ProtoMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Protoman.png",
                     color: "#B00C1F",
                     capacity: "2",
-                    alignment: MoralEnum.LawfulGood,
-                    modifiers: sampleDialogue
-                    } )
+                    alignment: "lawfulgood",
+                    personality: "default"
+                    }
                 },
                 roll: {
                   id: "roll",
-                  custom: new Customization( {
+                  custom: {
                     name: "Roll.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Roll.png",
                     color: "#EA5B82",
                     capacity: "2",
-                    alignment: MoralEnum.NeutralGood,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "neutralgood",
+                  personality: "default"
+                  }
                 },
                 searchman: {
                   id: "searchman",
-                  custom: new Customization( {
+                  custom: {
                     name: "SearchMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Searchman.png",
                     color: "#53733A",
                     capacity: "2",
-                    alignment: MoralEnum.LawfulNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "lawfulneutral",
+                  personality: "default"
+                  }
                 },
                 larkman: {
                   id: "larkman",
-                  custom: new Customization( {
+                  custom: {
                     name: "LarkMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Larkman.png",
                     color: "#3A73B7",
                     capacity: "2",
-                    alignment: MoralEnum.ChaoticNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "chaoticneutral",
+                  personality: "default"
+                  }
                 },
                 otenko: {
                   id: "otenko",
-                  custom: new Customization( {
+                  custom: {
                     name: "Otenko.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Otenko.png",
                     color: "#EAB74B",
                     capacity: "2",
-                    alignment: MoralEnum.LawfulGood,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "lawfulgood",
+                    personality: "default"
+                  }
                 },
                 toadman: {
                   id: "toadman",
-                  custom: new Customization( {
+                  custom: {
                     name: "ToadMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Toadman.png",
                     color: "#80CC70",
                     capacity: "2",
-                    alignment: MoralEnum.NeutralGood,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "neutralgood",
+                    personality: "default"
+                  }
                 },
                 tomahawkman: {
                   id: "tomahawkman",
-                  custom: new Customization( {
+                  custom: {
                     name: "TomahawkMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Tomahawkman.png",
                     color: "#67C1E2",
                     capacity: "2",
-                    alignment: MoralEnum.TrueNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "trueneutral",
+                    personality: "default"
+                  }
                 },
                 gyroman: {
                   id: "gyroman",
-                  custom: new Customization( {
+                  custom: {
                     name: "GyroMan.EXE",
                     img: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Cameo/Gyroman.png",
                     color: "#EAA116",
                     capacity: "2",
-                    alignment: MoralEnum.ChaoticNeutral,
-                    modifiers: sampleDialogue
-                  } )
+                    alignment: "chaoticneutral",
+                    personality: "default"
+                  } 
                 }
             }
         },

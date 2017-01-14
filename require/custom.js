@@ -6,6 +6,7 @@ var CUSTOM = {
     this.color = input.color || null;
     this.capacity = input.capacity || null;
     this.alignment = input.alignment || null;
+    this.personality = input.personality || null;
     this.modifiers = input.modifiers || new Modifiers();
   },
 
