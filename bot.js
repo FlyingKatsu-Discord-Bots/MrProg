@@ -3,7 +3,7 @@
 //const NPC = require("./require/npc.js");
 //const CUSTOM = require("./require/custom.js");
 //const ENUM = require("./require/enum.js");
-//const PARTNER = require("./require/partner.js");
+//const CHARACTER = require("./require/character.js");
 
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();

@@ -1,14 +1,13 @@
-var PARTNER = function(user, n, b, v) {
-  this.owner = user;
-  this.baseKey = b || 1;
-  this.variantKey = v || 0;
+var CHARACTER = {
+  proto: function() {
+  this.owner = CLIENT.user;
+  this.baseKey = 1;
+  this.variantKey = 0;
   this.level = 0;
   this.xp = 0;
   this.mood = 1;
   this.numResets = 0;
-  
-  if (config.enforceSuffix && n && !n.includes(confix.nameExt) ) { n += config.nameExt; }
-  this.custom = new Customization( { name: n } );
+  this.custom = new Customization( );
 
   this.getEmbed = function(msg, situation) {
     return {
@@ -31,7 +30,7 @@ var PARTNER = function(user, n, b, v) {
     return this.getBase().variants[this.variantKey];
   };
   this.getImg = function(channel) {
-    if ( config.EnableOC && SERVER.channels.oc === channel && this.custom.img ) {
+    if ( CONFIG.EnableOC && SERVER.channels.oc === channel && this.custom.img ) {
       return this.custom.img;
     } else {
       return this.getVariant().custom.img;
@@ -78,7 +77,45 @@ var PARTNER = function(user, n, b, v) {
   this.setDialogue = function( situation, feeling, text ) {
     this.custom.modifiers[situation].dialogue[feeling] = text;
   };
-};
+},
+  
+  droppo: function() {
+    let self = this;
+    return (function(){
+      this.prototype = self.proto;
+      this.drop = [{ zenny: 50 }];
+      // TODO: Add drop-related functions here to act as prototype
+    })();
+  },
+  
+  // TODO: Add other constructors here, for things like Viruses and Bosses
+  enemy: function(name, base, variant, drop) {
+    let self = this;
+    return (function() {
+      this.prototype = self.droppo;
+      if (name) this.custom.name = name;
+      if (base) this.baseKey = base;
+      if (variant) this.variantKey = variant; // defaults to zero, so no need to check zero case
+      if (drop && drop.length > 0) this.drop = drop;
+    })();
+  },
+  
+  partner: function(user, name, base, variant) {
+    let self = this;
+    return (function() {
+      this.prototype = self.proto;
+      this.owner = user;
+      if (CONFIG.enforceSuffix && name && !name.includes(CONFIG.suffix) ) { name += CONFIG.suffix; }
+      if (name) this.custom.name = name;
+      if (base) this.baseKey = base;
+      if (variant) this.variantKey = variant; // defaults to zero, so no need to check zero case
+    })();
+  }
+    
+  
+}
 
-if (Object.freeze) Object.freeze(PARTNER);
-//module.exports = PARTNER;
+
+
+if (Object.freeze) Object.freeze(CHARACTER);
+//module.exports = CHARACTER;
