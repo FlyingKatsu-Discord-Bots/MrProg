@@ -70,7 +70,7 @@ var FORMAT = {
     if ( em.color ) output.setColor( em.color );
     if ( em.foot ) output.setFooter( em.foot );
     return output;*/
-    return new Discord.RichEmbed( input );
+    return new DISCORD.RichEmbed( input );
   }
 };
 if (Object.freeze) Object.freeze(FORMAT);
@@ -137,11 +137,17 @@ var UTIL = {
   
   reduceOR: function(r, item) {
     return r || item;
-  }
+  },
   
   channelMatch: function( channel ) {
     return function( channel, item ) {
       return SERVER.channels[item] === channel;
+    }
+  },
+  
+  roleMatch: function( user ) {
+    return function( user, item ) {
+      return SERVER.guild.member(user).roles.has(SERVER.roles[item].id);
     }
   }
 };
@@ -164,11 +170,11 @@ var COMMAND = {
     if( args[0] ) {
       SERVER.channels.info
         //.sendEmbed( FORMAT.embed( {  } ) )
-        .sendCode( 'md', ENUM.Command.getDetails() )
+        .sendCode( 'md', this.getDetails() )
         .catch(console.log);
     } else {
       msg.author
-        .sendCode( 'md', ENUM.Command.getDetails() )
+        .sendCode( 'md', this.getDetails() )
         .catch(console.log);
     }
   },
@@ -178,12 +184,14 @@ var COMMAND = {
         .sendMessage(`Summarizing all variants available for base keyword ${args[0].toUpperCase()}...`)
         .catch(console.log);
       SERVER.channels.info
-        .sendEmbed( getEmbed( 'listvariant', msg, null,
-        args[0].toLowerCase()) )
+        .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 
+          'normal', 'normal', ENUM.Preset.getSummary(ENUM.Preset[args[0]]), "", 
+          `${args[0].toUpperCase()} Base Variants`, ENUM.Preset.properties[ENUM.Preset[args[0]]].img ) ) )
         .catch(console.log);
     } else {
       SERVER.channels.info
-        .sendEmbed(getEmbed('listbase', msg, null, null))
+        .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 
+          'normal', 'normal', ENUM.Preset.getDetails(), "", "Available Base Keywords" ) ) )
         .catch(console.log);
     }
   },
@@ -223,7 +231,7 @@ var COMMAND = {
   create: function(msg, args) {
     /*if ( allPartners.has( msg.author.id ) ) {
       let partner = allPartners.get(msg.author.id);
-      msg.reply(`BUT YOU ALREADY HAVE A ${config.partnerLabel.toUpperCase()}`).catch(console.log);
+      msg.reply(`BUT YOU ALREADY HAVE A ${CONFIG.partnerLabel.toUpperCase()}`).catch(console.log);
       allPartners.get(msg.author.id).respond( msg, 'confused');
     } else {*/
 
@@ -232,31 +240,35 @@ var COMMAND = {
         base = args[0]; variant = args[1];name = args.slice(2).join("_");
       } else
       if ( args.length == 2 ) { // Be smart interpreter
-        if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) {
+        if ( ENUM.Preset.hasBase(args[0].toLowerCase()) ) {
           base = args[0];
-          if ( BaseTypeEnum.hasVariant(base.toLowerCase(),args[1].toLowerCase()) ) { variant = args[1]; }
+          if ( ENUM.Preset.hasVariant(base.toLowerCase(),args[1].toLowerCase()) ) { variant = args[1]; }
           else { name = args[1]; }
         } else { name = args[0]; base = args[1]; }
       } else
       if ( args.length == 1 )  { // Assume it is a name or a base
-        if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) { base = args[0]; }
+        if ( ENUM.Preset.hasBase(args[0].toLowerCase()) ) { base = args[0]; }
         else { name = args[0]; }
       }
 
       base = ( base ) ? base.toLowerCase() : null;
       variant = ( variant ) ? variant.toLowerCase() : null;
 
-      let verifiedBase = ( base === null || BaseTypeEnum.hasBase(base) );
-      let verifiedVariant = ( variant === null || BaseTypeEnum.hasVariant(base,variant) );
+      let verifiedBase = ( base === null || ENUM.Preset.hasBase(base) );
+      let verifiedVariant = ( variant === null || ENUM.Preset.hasVariant(base,variant) );
 
-      if ( base === null  || !verifiedBase ) base = BaseTypeEnum.properties[ Object.keys(BaseTypeEnum.properties)[0] ].id;
-      if ( variant === null || !verifiedVariant ) variant = Object.keys(BaseTypeEnum.properties[BaseTypeEnum[base]].variants)[0];
+      if ( base === null  || !verifiedBase ) base = ENUM.Preset.properties[ Object.keys(ENUM.Preset.properties)[0] ].id;
+      if ( variant === null || !verifiedVariant ) variant = Object.keys(ENUM.Preset.properties[ENUM.Preset[base]].variants)[0];
       //console.log(name);
-      name = ( name != null ) ?  name : BaseTypeEnum.properties[BaseTypeEnum[base]].variants[variant].name;
+      name = ( name != null ) ?  name : ENUM.Preset.properties[ENUM.Preset[base]].variants[variant].name;
       //console.log(base + " " + variant + " " + name);
-      allPartners.set( msg.author.id, new Partner(msg.author, name, base, variant) );
-      allPartners.get(msg.author.id).respond( msg, 'greeting');
-      BotGuild.guild.member(msg.author).addRole( BotGuild.guild.roles.find("name", config.roles.partnered) ).catch(console.log);
+      allPartners.set( msg.author.id, new CHARACTER.Partner(msg.author, name, base, variant) );
+      msg.channel.sendMessage( FORMAT.embed( 
+        allPartners.get(msg.author.id).getEmbed( msg, 'greeting') ) )
+        .catch(console.log);
+      SERVER.guild.member(msg.author)
+        .addRole( SERVER.roles.partnered) )
+        .catch(console.log);
     //}
   },
   check: function(msg, args) {
@@ -350,6 +362,24 @@ var COMMAND = {
       .sendEmbed( FORMAT.embed ( NPC.announcer.getEmbed( 
         'normal', 'normal', ENUM.Challenge.getDetails(), "" ) ) )
       .catch(console.log);
+  },
+  // Helper functions that used to be part of ENUM.Command
+  getDetails: function() {
+    let str = ``;
+    for ( let p in ENUM.Command.properties ) {
+      str += `${FORMAT.code(ENUM.Command.properties[p].usage, CONFIG.prefix)}\n${ENUM.Command.properties[p].desc}\nUsable only by: ${ENUM.Command.properties[p].perm}\n\n`
+    }
+    return str;
+  },
+  isUserPermitted: function( cmd, msg ) {
+    return UTIL.boolMapReduce( false, ENUM.Command.properties[ENUM.Command[cmd]].perm, UTIL.roleMatch(msg.author), reduceOR );
+  },
+  isPermitted: function( cmd, msg ) {
+    if ( msg.channel.type === "dm" ) {
+      return ENUM.Command.properties[ENUM.Command[cmd]].enableDM && this.isUserPermitted( cmd, msg );
+    } else {
+      return UTIL.boolMapReduce( false, ENUM.Command.properties[ENUM.Command[cmd]].channels, UTIL.channelMatch(msg.channel), reduceOR ) && this.isUserPermitted( cmd, msg );
+    }
   }
 };
 if (Object.freeze) Object.freeze(COMMAND);
@@ -441,9 +471,9 @@ CLIENT.on( 'message', msg => {
     //let isPermitted = true;
     let name = (msg.channel.type === "text") ? msg.member.displayName : msg.author.username;
     
-    if ( ENUM.Command.isPermitted(cmd, msg) ) {
+    if ( COMMAND.isPermitted(cmd, msg) ) {
       // process command
-      ENUM.Command.properties[ENUM.Command[cmd]].respond(msg, args);
+      COMMAND[ENUM.Command[cmd]](msg, args);
     } else {
       // alert that this user is not permitted
       msg.author

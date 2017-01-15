@@ -269,7 +269,7 @@ var ENUM = {
             usage: "shutdown",
             value: 1,
             desc: "SHUTS DOWN THE BOT. Tread carefully.",
-            perm: CONFIG.roles.mod,
+            perm: ["mod"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -278,7 +278,7 @@ var ENUM = {
            usage: "",
            value: 2,
            desc: "Tests mention embeds",
-           perm: CONFIG.roles.mod,
+           perm: ["mod"],
            enableDM: true,
            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -287,7 +287,7 @@ var ENUM = {
             usage: "help [optional arg: public]",
             value: 3,
             desc: "Sends an embedded message with a list of all recognized bot commands.",
-            perm: CONFIG.roles.any,
+            perm: ["any"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -295,8 +295,8 @@ var ENUM = {
             id: "bases",
             usage: "bases",
             value: 4,
-            desc: `Display a list of available Base Types for you ${config.partnerLabel}`,
-            perm: CONFIG.roles.any,
+            desc: `Display a list of available Base keywords`,
+            perm: ["any"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -304,8 +304,8 @@ var ENUM = {
             id: "variants",
             usage: "variants [basetype]",
             value: 5,
-            desc: `Displays a list of all available ${config.partnerLabel} variants for the specified Base Type`,
-            perm: CONFIG.roles.any,
+            desc: `Displays a list of all available variants for the specified Base`,
+            perm: ["any"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -313,8 +313,8 @@ var ENUM = {
             id: "create",
             usage: "create (BASE) (VARIANT) (NAME)",
             value: 6,
-            desc: `Creates a ${config.partnerLabel} with the given base, variant, and name. To ensure correctness, use placeholders like - or "" to denote default values that are NOT names. Using this command will also promote you to @${config.roles.partnered}`,
-            perm: CONFIG.roles.any,
+            desc: `Creates a character with the given base, variant, and name. To ensure correctness, use placeholders like - or "" to denote default values that are NOT names.`,
+            perm: ["any"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -322,8 +322,8 @@ var ENUM = {
             id: "check",
             usage: "check",
             value: 7,
-            desc: `DMs you private info about your ${config.partnerLabel}. Not yet implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `DMs you private info about your partner. Not yet implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -331,8 +331,8 @@ var ENUM = {
             id: "stats",
             usage: "stats",
             value: 8,
-            desc: `Shares public info about your ${config.partnerLabel}. Not yet implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `Shares public info about your partner. Not yet implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -340,8 +340,8 @@ var ENUM = {
             id: "customize",
             usage: "customize",
             value: 9,
-            desc: `Enables you to change your ${config.partnerLabel}'s image, color, basetype, variant, etc.  Not yet implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `Enables you to change your character's image, color, basetype, variant, etc.  Not yet implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -349,8 +349,8 @@ var ENUM = {
             id: "reset",
             usage: "reset",
             value: 10,
-            desc: `Revert your ${config.partnerLabel} to factory settings. Not yet implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `Revert your character to factory settings. Not yet implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -359,7 +359,7 @@ var ENUM = {
             usage: "netalerts",
             value: 11,
             desc: "Check on the status of the Internet. Only partially implemented.",
-            perm: CONFIG.roles.partnered,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -367,8 +367,8 @@ var ENUM = {
             id: "jack",
             usage: "jack",
             value: 12,
-            desc: `Command your ${config.partnerLabel} to take part in a challenge! Not yet implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `Command your character to take part in a challenge! Not yet implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -376,8 +376,8 @@ var ENUM = {
             id: "hey",
             usage: "hey",
             value: 13,
-            desc: `Greet your ${config.partnerLabel}. Partially implemented.`,
-            perm: CONFIG.roles.partnered,
+            desc: `Greet your character. Partially implemented.`,
+            perm: ["partnered"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -386,7 +386,7 @@ var ENUM = {
           usage: "clear [Integer number between 2 and 200; Default is 10]",
           value: 14,
           desc: "Delete last INTEGER number of messages in channel.",
-          perm: CONFIG.roles.mod,
+          perm: ["mod"],
           enableDM: true,
           channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
@@ -395,28 +395,10 @@ var ENUM = {
             usage: "challenge",
             value: 15,
             desc: "Display a list of available Challenge Modes that are planned.",
-            perm: CONFIG.roles.any,
+            perm: ["any"],
             enableDM: true,
             channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         }
-    },
-    getDetails: function() {
-      let str = ``;
-      for ( let p in this.properties ) {
-        str += `${formatCmd(this.properties[p].usage)}\n${this.properties[p].desc}\nUsable only by: ${this.properties[p].perm}\n\n`
-      }
-      return str;
-    },
-    isUserPermitted: function( cmd, msg ) {
-      let modRole = SERVER.guild.roles.find("name", ENUM.Command[cmd].perm);
-      return msg.member.role.has(modRole.id);
-    },
-    isPermitted: function( cmd, msg ) {
-      if ( msg.channel.type === "dm" ) {
-        return this.properties[this[cmd]].enableDM && this.isUserPermitted( cmd, msg );
-      } else {
-        return UTIL.boolMapReduce( false, this.properties[this[cmd]].channels, UTIL.channelMatch(msg.channel), reduceOR ) && this.isUserPermitted( cmd, msg );
-      }
     }
   },
 

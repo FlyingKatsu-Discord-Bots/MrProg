@@ -10,13 +10,15 @@ var NPC_Base = {
     warning: "https://cdn.pbrd.co/images/hXrbGDHil.png",
     error: "https://cdn.pbrd.co/images/hXrbGDHil.png"
   },
-  getEmbed: function( imgID, colorID, desc, foot ) {
+  getEmbed: function( imgID, colorID, desc, foot, title, image ) {
     return {
       author: this.name,
       description: text,
       thumbnail: this.img[imgID],
       color: this.color[colorID],
-      footer: foot
+      footer: foot,
+      title: title,
+      image: image
     };
   }
 };

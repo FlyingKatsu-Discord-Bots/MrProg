@@ -97,7 +97,7 @@ var CHARACTER = {
   },
   
   // TODO: Add other constructors here, for things like Viruses and Bosses
-  enemy: function(name, base, variant, drop) {
+  Enemy: function(name, base, variant, drop) {
     let self = this;
     return (function() {
       this.prototype = self.droppo;
@@ -108,7 +108,7 @@ var CHARACTER = {
     })();
   },
   
-  partner: function(user, name, base, variant) {
+  Partner: function(user, name, base, variant) {
     let self = this;
     return (function() {
       this.prototype = self.proto;
