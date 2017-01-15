@@ -271,19 +271,7 @@ var ENUM = {
             desc: "SHUTS DOWN THE BOT. Tread carefully.",
             perm: CONFIG.roles.mod,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              BotGuild.channel.main.sendMessage(`${BotGuild.guild.roles.find("name",config.roles.partnered)} ${config.botname} has been taken offline by ${msg.author}`).catch(console.log);
-              /*BotGuild.channel.main.sendEmbed( getBotEmbedFoot( progbot.name, progbot.img.green, progbot.color.green,
-                `GOODBYE, I AM SHUTTING DOWN...`,
-                `${config.botname} was taken offline by @${msg.author.username}#${msg.author.discriminator}`
-              ).catch(console.log);*/
-              //) ).then( client.destroy().catch(console.log) ).catch(console.log);
-              //console.log("FINISHED SENDING EMBED TO SHUT DOWN");
-              //client.setTimeout( function(){ return; }, 5000);
-              //console.log("FINISHED TIMEOUT. COMMENCE SHUT DOWN");
-              client.destroy().catch(console.log);
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         2: {
            id: "test",
@@ -292,10 +280,7 @@ var ENUM = {
            desc: "Tests mention embeds",
            perm: CONFIG.roles.mod,
            enableDM: true,
-           channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-           respond: function(msg, args) {
-             BotGuild.channel.debug.sendEmbed( getEmbed( 'mention', msg, null, null ) ).catch(console.log);
-           }
+           channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         3: {
             id: "help",
@@ -304,15 +289,7 @@ var ENUM = {
             desc: "Sends an embedded message with a list of all recognized bot commands.",
             perm: CONFIG.roles.any,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              if( args[0] ) {
-                BotGuild.channel.info.sendEmbed(getEmbed('help', msg, null, null)).catch(console.log);
-              } else {
-                msg.author.sendEmbed(getEmbed('help', msg, "PLEASE CHECK YOUR DM FOR INSTRUCTIONS", null)).catch(console.log);
-              }
-              return;
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         4: {
             id: "bases",
@@ -321,16 +298,7 @@ var ENUM = {
             desc: `Display a list of available Base Types for you ${config.partnerLabel}`,
             perm: CONFIG.roles.any,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              if ( BaseTypeEnum.hasOwnProperty(args[0]) ) {
-                BotGuild.channel.info.sendMessage(`Summarizing all variants available for BaseType:${args[0].toUpperCase()}...`);
-                BotGuild.channel.info.sendEmbed( getEmbed( 'listvariant', msg, null,
-                  args[0].toLowerCase()) ).catch(console.log);
-              } else {
-                BotGuild.channel.info.sendEmbed(getEmbed('listbase', msg, null, null)).catch(console.log);
-              }
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         5: {
             id: "variants",
@@ -339,32 +307,7 @@ var ENUM = {
             desc: `Displays a list of all available ${config.partnerLabel} variants for the specified Base Type`,
             perm: CONFIG.roles.any,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-            if (BaseTypeEnum.hasOwnProperty(args[0])) {
-                let variants = BaseTypeEnum.getVariants(BaseTypeEnum[args[0]]);
-
-                if (variants.length == 0) {
-                  BotGuild.channel.info.sendMessage(`${msg.author}: No variants available for BaseType:${args[0].toUpperCase()}...`);
-
-                } else {
-                  BotGuild.channel.info.sendMessage(`${msg.author}: Listing all variants for BaseType:${args[0].toUpperCase()}...`);
-                  for ( let i=0; i<variants.length; i++ ) {
-                    if ( variants[i] != null ) BotGuild.channel.info.sendEmbed( variants[i] ).catch(console.log);
-                  }
-                }
-            } else {
-              if ( args[0] ) {
-                msg.channel.sendEmbed( getBotEmbed( progbot.name, progbot.img.red, progbot.color.red,
-                  `ERROR!! ERROR!! ERROR!!\n\nUNRECOGNIZED BASE TYPE IN COMMAND ${formatCmd("VARIANTS " + args[0].toUpperCase())}\n\nPLEASE PICK A VALID BASE TYPE AND TRY THIS COMMAND AGAIN`) ).catch(console.log);
-                CommandEnum.properties[4].respond(msg, args);
-              } else {
-                msg.channel.sendEmbed( getBotEmbed( progbot.name, progbot.img.red, progbot.color.red,
-                  `ERROR!! ERROR!! ERROR!!\n\nPLEASE PICK A VALID BASE TYPE AND TRY THIS COMMAND AGAIN`) ).catch(console.log);
-                CommandEnum.properties[4].respond(msg, args);
-              }
-            }
-          }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         6: {
             id: "create",
@@ -373,46 +316,7 @@ var ENUM = {
             desc: `Creates a ${config.partnerLabel} with the given base, variant, and name. To ensure correctness, use placeholders like - or "" to denote default values that are NOT names. Using this command will also promote you to @${config.roles.partnered}`,
             perm: CONFIG.roles.any,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              /*if ( allPartners.has( msg.author.id ) ) {
-                let partner = allPartners.get(msg.author.id);
-                msg.reply(`BUT YOU ALREADY HAVE A ${config.partnerLabel.toUpperCase()}`).catch(console.log);
-                allPartners.get(msg.author.id).respond( msg, 'confused');
-              } else {*/
-
-                var name = base = variant = null;
-                if(args.length > 2) { // assume name is all of the leftovers
-                  base = args[0]; variant = args[1];name = args.slice(2).join("_");
-                } else
-                if ( args.length == 2 ) { // Be smart interpreter
-                  if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) {
-                    base = args[0];
-                    if ( BaseTypeEnum.hasVariant(base.toLowerCase(),args[1].toLowerCase()) ) { variant = args[1]; }
-                    else { name = args[1]; }
-                  } else { name = args[0]; base = args[1]; }
-                } else
-                if ( args.length == 1 )  { // Assume it is a name or a base
-                  if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) { base = args[0]; }
-                  else { name = args[0]; }
-                }
-
-                base = ( base ) ? base.toLowerCase() : null;
-                variant = ( variant ) ? variant.toLowerCase() : null;
-
-                let verifiedBase = ( base === null || BaseTypeEnum.hasBase(base) );
-                let verifiedVariant = ( variant === null || BaseTypeEnum.hasVariant(base,variant) );
-
-                if ( base === null  || !verifiedBase ) base = BaseTypeEnum.properties[ Object.keys(BaseTypeEnum.properties)[0] ].id;
-                if ( variant === null || !verifiedVariant ) variant = Object.keys(BaseTypeEnum.properties[BaseTypeEnum[base]].variants)[0];
-                //console.log(name);
-                name = ( name != null ) ?  name : BaseTypeEnum.properties[BaseTypeEnum[base]].variants[variant].name;
-                //console.log(base + " " + variant + " " + name);
-                allPartners.set( msg.author.id, new Partner(msg.author, name, base, variant) );
-                allPartners.get(msg.author.id).respond( msg, 'greeting');
-                BotGuild.guild.member(msg.author).addRole( BotGuild.guild.roles.find("name", config.roles.partnered) ).catch(console.log);
-              //}
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         7: {
             id: "check",
@@ -421,8 +325,7 @@ var ENUM = {
             desc: `DMs you private info about your ${config.partnerLabel}. Not yet implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) { msg.reply('This feature not yet supported.').catch(console.log); }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         8: {
             id: "stats",
@@ -431,8 +334,7 @@ var ENUM = {
             desc: `Shares public info about your ${config.partnerLabel}. Not yet implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) { msg.reply('This feature not yet supported.').catch(console.log); }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         9: {
             id: "customize",
@@ -441,8 +343,7 @@ var ENUM = {
             desc: `Enables you to change your ${config.partnerLabel}'s image, color, basetype, variant, etc.  Not yet implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) { msg.reply('This feature not yet supported.').catch(console.log); }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         10: {
             id: "reset",
@@ -451,8 +352,7 @@ var ENUM = {
             desc: `Revert your ${config.partnerLabel} to factory settings. Not yet implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) { msg.reply('This feature not yet supported. Planned for V.0.2.0').catch(console.log); }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         11: {
             id: "netalerts",
@@ -461,11 +361,7 @@ var ENUM = {
             desc: "Check on the status of the Internet. Only partially implemented.",
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              msg.reply('NOTE: This feature not yet fully supported. Planned for V.0.2.0').catch(console.log);
-              msg.channel.sendEmbed( getEmbed('netalert', msg, null, null) ).catch(console.log);
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         12: {
             id: "jack",
@@ -474,30 +370,7 @@ var ENUM = {
             desc: `Command your ${config.partnerLabel} to take part in a challenge! Not yet implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              if ( allPartners.has(msg.author.id) ) {
-                let partner = allPartners.get(msg.author.id);
-                if ( args[0] ) {
-                  if ( args[0].toLowerCase() == 'in' ) {
-                    allPartners.get(msg.author.id).respond( msg, 'netalert');
-                  } else
-                  if ( args[0].toLowerCase() == 'out' ) {
-                    allPartners.get(msg.author.id).respond( msg, 'bails');
-                  } else {
-                    allPartners.get(msg.author.id).respond( msg, 'confused');
-                  }
-                } else {
-                  allPartners.get(msg.author.id).respond( msg, 'confused');
-                }
-              } else {
-                msg.channel.sendEmbed( getBotEmbed(
-                  progbot.name, progbot.img.green, progbot.color.yellow,
-                  `BUT YOU DON'T HAVE A ${config.partnerLabel.toUpperCase()} YET!\n\TYPE ${formatCmd("CREATE NAME.EXE")} TO MAKE A ${config.partnerLabel.toUpperCase()} FOR YOURSELF.`
-                ) ).catch(console.log);
-              }
-              //  msg.reply('This feature not yet supported. Planned for V.0.2.0').catch(console.log);
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         13: {
             id: "hey",
@@ -506,13 +379,7 @@ var ENUM = {
             desc: `Greet your ${config.partnerLabel}. Partially implemented.`,
             perm: CONFIG.roles.partnered,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              if(allPartners.has(msg.author.id)) {
-                allPartners.get(msg.author.id).respond( msg, 'greeting');
-              }
-              //msg.reply('This feature not yet fully supported.').catch(console.log);
-             }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         14: {
           id: "clear",
@@ -521,19 +388,7 @@ var ENUM = {
           desc: "Delete last INTEGER number of messages in channel.",
           perm: CONFIG.roles.mod,
           enableDM: true,
-          channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-          respond: function(msg, args) {
-            let numDel = (args[0]) ? parseInt(args[0]) : 10;
-            if (numDel <= 2 || numDel >= 200) {
-              msg.reply( ` CLEAR command accepts only values greater than 2 and less than 200!` ).catch(console.log);
-            } else {
-              msg.channel.bulkDelete(numDel).then(
-                msg.channel.sendEmbed( getBotEmbedFoot(
-                  progbot.name, progbot.img.green, progbot.color.yellow,
-                  `${numDel} MESSAGES DELETED.`, `by @${msg.author.username}#${msg.author.discriminator} in #${msg.channel.name}` ) ).catch(console.log)
-              ).catch(console.log);
-            }
-          }
+          channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         },
         15: {
             id: "challenge",
@@ -542,10 +397,7 @@ var ENUM = {
             desc: "Display a list of available Challenge Modes that are planned.",
             perm: CONFIG.roles.any,
             enableDM: true,
-            channels: [ "main", "info", "battle", "shop", "oc", "debug" ],
-            respond: function(msg, args) {
-              msg.channel.sendEmbed(getEmbed('listchallenge', msg, null, null)).catch(console.log);
-            }
+            channels: [ "main", "info", "battle", "shop", "oc", "debug" ]
         }
     },
     getDetails: function() {

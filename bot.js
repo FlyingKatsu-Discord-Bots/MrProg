@@ -10,6 +10,12 @@ const CLIENT = new DISCORD.Client();
 
 const SERVER = {
   guild: null,
+  roles: {
+    any: null,
+    partnered: null,
+    mod: null,
+    admin: null
+  },
   channels: {
     main: null,
     info: null,
@@ -70,7 +76,7 @@ var FORMAT = {
 if (Object.freeze) Object.freeze(FORMAT);
 
 var UTIL = {
-  setServer( channels ) {
+  setServer: function( channels ) {
     
     // Set MAIN to DEBUG if MAIN is NULL
     if ( !channels.main ) {
@@ -95,6 +101,9 @@ var UTIL = {
       SERVER.channels.shop = SERVER.guild.channels.get( CONFIG.channels.shop || CONFIG.channels.main );
       SERVER.channels.oc = SERVER.guild.channels.get( CONFIG.channels.oc || CONFIG.channels.main );
       SERVER.channels.debug = SERVER.guild.channels.get( CONFIG.channels.debug || CONFIG.channels.main );
+      
+      // Set up roles
+      UTIL.setRoles();
     } else {
       // If the guild wasn't found, the SERVER isn't valid
       SERVER.isValid = false;
@@ -105,6 +114,13 @@ var UTIL = {
     
     if (Object.freeze) Object.freeze(SERVER);
 
+  },
+  
+  setRoles: function() {
+    SERVER.roles.any = SERVER.guild.roles.find('name', CONFIG.roles.any);
+    SERVER.roles.partnered = SERVER.guild.roles.find('name', CONFIG.roles.partnered);
+    SERVER.roles.mod = SERVER.guild.roles.find('name', CONFIG.roles.mod);
+    SERVER.roles.admin = SERVER.guild.roles.find('name', CONFIG.roles.admin);
   },
   
   boolMapReduce: function(input, arr, fnIN, fnOUT) {
@@ -131,6 +147,212 @@ var UTIL = {
 };
 if (Object.freeze) Object.freeze(UTIL);
 
+var COMMAND = {
+  shutdown: function(msg, args) {
+    SERVER.channels.main
+      .sendMessage(`${SERVER.roles.partnered} ${CONFIG.botname} has been taken offline by ${msg.author}`)
+      .catch(console.log);
+    CLIENT.destroy()
+      .catch(console.log);
+  },
+  test: function(msg, args) {
+    SERVER.channels.debug
+      .sendEmbed( FORMAT.embed( { description: `This is just a test.` } ) )
+      .catch(console.log);
+  },
+  help: function(msg, args) {
+    if( args[0] ) {
+      SERVER.channels.info
+        //.sendEmbed( FORMAT.embed( {  } ) )
+        .sendCode( 'md', ENUM.Command.getDetails() )
+        .catch(console.log);
+    } else {
+      msg.author
+        .sendCode( 'md', ENUM.Command.getDetails() )
+        .catch(console.log);
+    }
+  },
+  bases: function(msg, args) {
+    if ( ENUM.Preset.hasOwnProperty(args[0]) ) {
+      SERVER.channels.info
+        .sendMessage(`Summarizing all variants available for base keyword ${args[0].toUpperCase()}...`)
+        .catch(console.log);
+      SERVER.channels.info
+        .sendEmbed( getEmbed( 'listvariant', msg, null,
+        args[0].toLowerCase()) )
+        .catch(console.log);
+    } else {
+      SERVER.channels.info
+        .sendEmbed(getEmbed('listbase', msg, null, null))
+        .catch(console.log);
+    }
+  },
+  variants: function(msg, args) {
+    if (ENUM.Preset.hasOwnProperty(args[0])) {
+      let variants = ENUM.Preset.getVariants(BaseTypeEnum[args[0]]);
+
+      if (variants.length == 0) {
+        SERVER.channels.info.sendMessage(`${msg.author}: No variants available for base keyword ${args[0].toUpperCase()}...`);
+
+      } else {
+        SERVER.channels.info.sendMessage(`${msg.author}: Listing all variants for base keyword :${args[0].toUpperCase()}...`);
+        for ( let i=0; i<variants.length; i++ ) {
+          if ( variants[i] != null ) 
+            SERVER.channels.info
+              .sendEmbed( FORMAT.embed(variants[i]) )
+              .catch(console.log);
+        }
+      }
+    } else {
+      if ( args[0] ) {
+        msg.channel
+          .sendEmbed( FORMAT.embed( NPC.getEmbed( 
+            'error', 'error',
+            `ERROR!! ERROR!! ERROR!!\n\nUNRECOGNIZED BASE KEYWORD IN COMMAND:\n\n ${FORMAT.inline("VARIANTS " + args[0].toUpperCase())}\n\nPlease pick a valid base keyword and try this command again`) )
+          .catch(console.log);
+        COMMAND.bases(msg, args);
+      } else {
+        FORMAT.embed( NPC.getEmbed( 
+            'error', 'error',
+            `ERROR!! ERROR!! ERROR!!\n\nPlease pick a valid base keyword and try this command again`) )
+          .catch(console.log);
+        COMMAND.bases(msg, args);
+      }
+    }
+  },
+  create: function(msg, args) {
+    /*if ( allPartners.has( msg.author.id ) ) {
+      let partner = allPartners.get(msg.author.id);
+      msg.reply(`BUT YOU ALREADY HAVE A ${config.partnerLabel.toUpperCase()}`).catch(console.log);
+      allPartners.get(msg.author.id).respond( msg, 'confused');
+    } else {*/
+
+      var name = base = variant = null;
+      if(args.length > 2) { // assume name is all of the leftovers
+        base = args[0]; variant = args[1];name = args.slice(2).join("_");
+      } else
+      if ( args.length == 2 ) { // Be smart interpreter
+        if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) {
+          base = args[0];
+          if ( BaseTypeEnum.hasVariant(base.toLowerCase(),args[1].toLowerCase()) ) { variant = args[1]; }
+          else { name = args[1]; }
+        } else { name = args[0]; base = args[1]; }
+      } else
+      if ( args.length == 1 )  { // Assume it is a name or a base
+        if ( BaseTypeEnum.hasBase(args[0].toLowerCase()) ) { base = args[0]; }
+        else { name = args[0]; }
+      }
+
+      base = ( base ) ? base.toLowerCase() : null;
+      variant = ( variant ) ? variant.toLowerCase() : null;
+
+      let verifiedBase = ( base === null || BaseTypeEnum.hasBase(base) );
+      let verifiedVariant = ( variant === null || BaseTypeEnum.hasVariant(base,variant) );
+
+      if ( base === null  || !verifiedBase ) base = BaseTypeEnum.properties[ Object.keys(BaseTypeEnum.properties)[0] ].id;
+      if ( variant === null || !verifiedVariant ) variant = Object.keys(BaseTypeEnum.properties[BaseTypeEnum[base]].variants)[0];
+      //console.log(name);
+      name = ( name != null ) ?  name : BaseTypeEnum.properties[BaseTypeEnum[base]].variants[variant].name;
+      //console.log(base + " " + variant + " " + name);
+      allPartners.set( msg.author.id, new Partner(msg.author, name, base, variant) );
+      allPartners.get(msg.author.id).respond( msg, 'greeting');
+      BotGuild.guild.member(msg.author).addRole( BotGuild.guild.roles.find("name", config.roles.partnered) ).catch(console.log);
+    //}
+  },
+  check: function(msg, args) {
+    msg.reply('This feature not yet supported.')
+      .catch(console.log);
+  },
+  stats: function(msg, args) {
+    msg.reply('This feature not yet supported.')
+      .catch(console.log);
+  },
+  customize: function(msg, args) {
+    msg.reply('This feature not yet supported.')
+      .catch(console.log);
+  },
+  reset: function(msg, args) {
+    msg.reply('This feature not yet supported. Planned for V.0.2.0')
+      .catch(console.log);
+  },
+  netalerts: function(msg, args) {
+    msg.reply('NOTE: This feature not yet fully supported. Planned for V.0.2.0')
+      .catch(console.log);
+    SERVER.channels.main
+      .sendMessage(`${SERVER.roles.partnered}`)
+      .catch(console.log);
+    msg.channel
+      .sendEmbed( FORMAT.embed( NPC.announcer.getEmbed('warning', 'error', 
+        `Attention all NetOps! A virus has infected the ${SERVER.channels.battle} channel!`,
+        "") ) )
+      .catch(console.log);
+  },
+  jack: function(msg, args) {
+    if ( allPartners.has(msg.author.id) ) {
+      let partner = allPartners.get(msg.author.id);
+      if ( args[0] ) {
+        if ( args[0].toLowerCase() == 'in' ) {
+          msg.channel
+            .sendEmbed( partner.getEmbed(msg, 'netalert') )
+            .catch(console.log);
+        } else
+        if ( args[0].toLowerCase() == 'out' ) {
+          msg.channel
+            .sendEmbed( partner.getEmbed(msg, 'bails') )
+            .catch(console.log);
+        } else {
+          msg.channel
+            .sendEmbed( partner.getEmbed(msg, 'confused') )
+            .catch(console.log);
+        }
+      } else {
+        msg.channel
+            .sendEmbed( partner.getEmbed(msg, 'confused') )
+            .catch(console.log);
+      }
+    } else {
+      msg.channel
+        .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 
+          'normal', 'warning',
+          `You don't have a ${CONFIG.partnerLabel} yet!\n\nType the following command to make yourself a ${CONFIG.partnerLabel}:\n\n${FORMAT.inline("CREATE NAME.EXE")}`,
+          "" ) ) )
+        .catch(console.log);
+    }
+    msg.reply('This feature not yet fully supported. Planned for V.0.2.0').catch(console.log);
+  },
+  hey: function(msg, args) {
+    if(allPartners.has(msg.author.id)) {
+      msg.channel
+        .sendEmbed( allPartners.get(msg.author.id).getEmbed( msg, 'greeting') )
+        .catch(console.log);
+    }
+  },
+  clear: function(msg, args) {
+    // TODO: Check user individual permissions to delete messages
+    let numDel = (args[0]) ? parseInt(args[0]) : 10;
+    if (numDel <= 2 || numDel >= 200) {
+      msg.reply( ` CLEAR command accepts only values greater than 2 and less than 200!` )
+        .catch(console.log);
+    } else {
+      msg.channel.bulkDelete(numDel)
+        .then(
+          msg.channel
+            .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 
+              'normal', 'warning', 
+              `${numDel} MESSAGES DELETED.`, 
+              `by @${msg.author.username}#${msg.author.discriminator} in #${msg.channel.name}` ) ) )
+            .catch(console.log)
+      ).catch(console.log);
+    }
+  },
+  challenge: function(msg, args) {
+    SERVER.channels.info
+      .sendEmbed( FORMAT.embed ( NPC.announcer.getEmbed( 
+        'normal', 'normal', ENUM.Challenge.getDetails(), "" ) ) )
+      .catch(console.log);
+  }
+};
+if (Object.freeze) Object.freeze(COMMAND);
 // =========================================================
 //  EVENT HANDLING
 // =========================================================
