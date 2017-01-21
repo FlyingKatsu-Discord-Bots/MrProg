@@ -1,5 +1,5 @@
-const SECRET = require("../conf.json");
-const CONFIG = require("../config.js");
+const SECRET = require("../config/bot.json");
+const CONFIG = require("../config/server.js");
 const NPC = require("./require/npc.js");
 const CUSTOM = require("./require/custom.js");
 const ENUM = require("./require/enum.js");

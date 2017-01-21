@@ -1,2 +1,14 @@
-node_modules/*
+# Node Dependencies
+node_modules/**
+
+# Temporary File making for file attachments
 temp/**
+
+# Production config files (used for testing, but containing sensitive info)
+config/**
+
+# Past versions of the dev directory
+v_*.*.*/**
+
+# Alternate skins (like Digimon or Super Smash Bros, instead of MMBN)
+skin_*/**
