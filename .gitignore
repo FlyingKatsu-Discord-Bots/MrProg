@@ -2,7 +2,7 @@
 node_modules/**
 
 # Temporary File making for file attachments
-temp/**
+temp/*.txt
 
 # Production config files (used for testing, but containing sensitive info)
 config/**
