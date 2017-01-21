@@ -941,14 +941,6 @@ CLIENT.on('disconnect', closeEvent => {
   CLIENT.user.setAFK(true);
   CLIENT.user.setStatus('dnd');
   CLIENT.user.setGame("Unexpected Disconnect!");
-  console.log(JSON.stringify(closeEvent.target._events.open));
-  console.log("=====");
-  console.log(JSON.stringify(closeEvent.target._events.message));
-  console.log("=====");
-  console.log(JSON.stringify(closeEvent.target._events.close));
-  console.log("=====");
-  console.log(JSON.stringify(closeEvent.target._events.error));
-  console.log("=====");
 });
 CLIENT.on('reconnecting', () => {
   console.log('Mr.Prog is attempting to reconnect');

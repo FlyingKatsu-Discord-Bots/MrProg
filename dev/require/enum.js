@@ -455,7 +455,6 @@ var ENUM = {
     let btk = "```";
     let str = `${btk}\r\n`;
       for ( let i = 0; i < subset.length; i++ ) {
-        console.log( subset[i] );
         str += `${CONFIG.prefix}${this.properties[this[ subset[i] ]].usage}\r\n\r\n`;
       }
       return `${str}\r\n${btk}`;
