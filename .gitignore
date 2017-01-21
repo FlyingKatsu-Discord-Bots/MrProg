@@ -1,3 +1,2 @@
 node_modules/*
-require/conf.json
-require/config.js
+temp/**
