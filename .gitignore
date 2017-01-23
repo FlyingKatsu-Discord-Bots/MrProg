@@ -5,7 +5,7 @@ node_modules/**
 temp/*.txt
 
 # Production config files (used for testing, but containing sensitive info)
-config/**
+**/require/config/**
 
 # Past versions of the dev directory
 v_*.*.*/**

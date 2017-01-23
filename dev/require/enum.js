@@ -1,4 +1,4 @@
-const CONFIG = require("../../config/server.js");
+const CONFIG = require("./config/server.js");
 
 var ENUM = {
   Moral: {
