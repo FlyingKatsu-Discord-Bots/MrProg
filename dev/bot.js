@@ -773,7 +773,7 @@ var COMMAND = {
             COMMAND.feedbackError( 
               `No changes were made to ${partner.getName()}'s dialogue. Are you sure you uploaded the right file?`, msg, useOC, partner );
           } else {
-            msg.reply(`${counter} changes made to ${partner.getName()}'s dialogue'`)
+            msg.reply(`${counter} changes made to ${partner.getName()}'s dialogue`)
               .catch(console.log);
             msg.channel.sendEmbed( FORMAT.embed( 
               allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'customized') ) )
