@@ -5,7 +5,7 @@ const CUSTOM = require("./require/custom.js");
 const ENUM = require("./require/enum.js");
 const CHARACTER = require("./require/character.js");
 
-const JSONFILE = require('jsonfile');
+const FS = require('fs');
 const REQUEST = require('request');
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
@@ -31,6 +31,7 @@ const SERVER = {
 const COMMONREGEX = {
   asterix: /\*/ig,
   hash: /#/ig,
+  newline: /\n/ig,
   suffix: /\.EXE/ig // TODO: make this not hardcoded
 };
 
@@ -672,14 +673,27 @@ var COMMAND = {
           return;
         }
         
-        JSONFILE.writeFile(output.file, output.customdata, {spaces: 2}, function(error){ 
-          console.log("Writing...");
-          console.log("ERROR: " + error);
-          console.log("Done writing!");
-          msg.author.send(`Here is your ${option} file!`, { file: output.file })
-            .then( console.log("finished sending the attachment, so delete file and enable user to do read/writes again") )
-            .catch(console.log);
+        FS.writeFile( 
+          output.file, 
+          JSON.stringify(output.customdata, null, 2).replace(COMMONREGEX.newline,"\r\n"),
+          (error) => {
+            if (error) console.error(error);
+            console.log("Writing...");
+            console.log("ERROR: " + error);
+            console.log("Done writing!");
+            msg.author.send(`Here is your ${option} file!`, { file: output.file })
+              .then( 
+                FS.unlink( output.file, (error) => {
+                  if (error) console.error(error);
+                  console.log("File deleted!");
+                } ),
+                (error) => { if (error) console.error(error); }
+                 )
+              .catch(console.log);
+            console.log("end of writefile handler");
         });
+        
+        
       } else {
         msg.reply(`You did not specify what file you wanted to download.`)
           .catch(console.log);
