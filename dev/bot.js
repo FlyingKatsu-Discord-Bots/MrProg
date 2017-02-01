@@ -953,9 +953,20 @@ var COMMAND = {
     msg.reply('This feature not yet fully supported. Planned for V.0.2.0').catch(console.log);
   },
   hey: function(msg, args, useOC) {
-    if(allPartners.has(msg.author.id)) {
-      msg.channel
-        .sendEmbed( allPartners.get(msg.author.id).getEmbed( msg, 'greeting') )
+    let phrase = args;//.join(" ");
+
+    if ( allPartners.has( msg.author.id ) ) {
+      let partner = allPartners.get(msg.author.id);
+      
+      let sit = partner.getSitFromPhrase(phrase);
+      console.log(sit);
+      
+      msg.channel.sendEmbed( FORMAT.embed( 
+        allPartners.get(msg.author.id).getEmbed( msg.author, useOC, sit) ) )
+        .catch(console.log);
+    
+    } else {
+      msg.reply(`BUT YOU DON'T HAVE A ${CONFIG.partnerLabel.toUpperCase()} YET!!`)
         .catch(console.log);
     }
   },

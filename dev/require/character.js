@@ -49,6 +49,12 @@ var FactoryPartner = function( _input ) {
   this.zenny = 0;
   this.bugfrag = 0;
   this.custom = new CUSTOM.Customization( { name: input.name } );  
+  this.phrases = [ // only allow alphanumeric, |, *, ', "
+    { phrase: "hi|hey|yo|hello", sit: "greeting" },
+    { phrase: "how are you|ya", sit: "feeling" },
+    { phrase: "I|I'm * scared", sit: "comfort" },
+    { phrase: "is|will * * be ok|okay|fine", sit: "comfort" }
+  ];
   // Extend FactoryChar
   let temp = new FactoryChar( input );
   for (t in temp) { 
@@ -244,6 +250,19 @@ FactoryPartner.prototype.getDialogue = function( sit, feeling ) {
     return this.custom.modifiers[sit].dialogue[feeling] || 
       ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].modifiers[sit].dialogue[feeling];
   };
+FactoryPartner.prototype.getSitFromPhrase = function (phrase) {
+  let output = "fakenod";
+  for ( let i = 0; i < this.phrases.length; i++ ) {
+    let stream = this.phrases[i].split(/[ ,]+/);
+    // For s in stream
+      // If s includes |, split(|) and see if any of them matches current phrase[p]
+        // If it's a match, check the next s with the next p
+      // If s is *, check the next s with the  next p
+      // Else, if s matches phrase[p], check next s with next p
+      // If we reached this spot and it is not the beginning or end of stream, go to next streamset
+  }
+  return output;
+};
 // PARTNER SETTERS
 FactoryPartner.prototype.setName = function( v ) {
     this.custom.name = v;

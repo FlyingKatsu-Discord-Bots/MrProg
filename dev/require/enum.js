@@ -238,6 +238,20 @@ var ENUM = {
             withdrawn: "...", 
             upset: "How stupid." 
           } },
+          fakenod: { mod: -0.05, dialogue: { 
+            happy: "Hahaha", 
+            content: "...yeah", 
+            okay: "Uh", 
+            withdrawn: "...", 
+            upset: "Don't talk to me." 
+          } },
+          comfort: { mod: 0.05, dialogue: { 
+            happy: "Don't worry! Everything's gonna be all right.", 
+            content: "Things will work out.", 
+            okay: "It's okay...", 
+            withdrawn: "I don't know...", 
+            upset: "..." 
+          } },
           customized: { mod: -0.5, dialogue: { 
             happy: "@User, thanks for the upgrade!", 
             content: "@User, do you think this suits me better?", 

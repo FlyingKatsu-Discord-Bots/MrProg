@@ -25,6 +25,8 @@ var CUSTOM = {
     this.cheats = input.cheats || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.bails = input.bails || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.confused = input.confused || { mod: null, dialogue: new CUSTOM.Dialogue() };
+    this.fakenod = input.fakenod || { mod: null, dialogue: new CUSTOM.Dialogue() };
+    this.comfort = input.comfort || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.customized = input.customized || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.stats = input.stats || { mod: null, dialogue: new CUSTOM.Dialogue() };
   },
