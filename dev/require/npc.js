@@ -13,6 +13,7 @@ var FactoryNPC = function( input ) {
     warning: "https://cdn.pbrd.co/images/hXrbGDHil.png",
     error: "https://cdn.pbrd.co/images/hXrbGDHil.png"
   };
+  this.dialogue = {};
 };
 
 
@@ -30,6 +31,14 @@ FactoryNPC.prototype.getEmbed = function( imgID, colorID, text, foot, title, ima
     imgurl: image
   };
 };
+FactoryNPC.prototype.getDialogue = function( situation ) {
+  if (situation === "random") {
+    let sit = Math.floor( Math.random() * 10 ) % Object.keys(this.dialogue).length;
+    return this.dialogue.random[sit];
+  } else {
+    return this.dialogue[situation];
+  }
+};
 
 
 // ===============================================
@@ -41,7 +50,16 @@ var NPC = {
   
   // Main responder for the bot
   guide: new FactoryNPC ( {
-    name: "Mr.Prog"
+    name: "Mr.Prog",
+    dialogue: {
+      tips_battle: "This is the battle channel! It's still under construction...",
+      tips_shop: "This is the shop channel! It's still under construction...",
+      random: ["HELLO, I AM THE MR.PROG BOT",
+              "Ssssss, sssssshhh!!",
+              "I'm so sleepy... zzz",
+              "La la la lala laa~"
+              ]
+    }
   } ),
   
   // Battle responder for the bot
@@ -56,6 +74,11 @@ var NPC = {
       normal: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Official/NetOfficial.png",
       warning: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Official/NetOfficial.png",
       error: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Official/NetPolice.png"
+    },
+    dialogue: {
+      tips_battle: "This is the battle channel! It's still under construction...",
+      random: ["..."
+              ]
     }
   } ),
   
@@ -71,6 +94,11 @@ var NPC = {
       normal: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Egg.png",
       warning: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Egg.png",
       error: "http://flyingkatsu.com/dsc/BattleNetworkFK/avatars/Generic/Egg.png"
+    },
+    dialogue: {
+      tips_shop: "Wanna see my wares?\n\nJust kidding! I don't have anything yet.",
+      random: ["...what?"
+              ]
     }
   } )
   

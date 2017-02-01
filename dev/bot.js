@@ -482,6 +482,60 @@ var COMMAND = {
     variants:  function(a,b) { this.variant(a,b); }
   },
   
+  tips: function(msg, args, useOC) {
+    
+    let partner = null;
+    
+    if ( allPartners.has( msg.author.id ) ) {
+      partner = allPartners.get(msg.author.id);
+    }
+    
+    switch( true ) {
+      case msg.type === "dm":
+      case msg.channel === SERVER.channels.main:
+      case msg.channel === SERVER.channels.oc:
+        if (partner) {
+          // Check in on partner status
+          msg.channel
+            .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
+              `Hello, ${msg.author}!\n\nHow is your ${CONFIG.partnerLabel}, ${partner.getName()}, doing?` ) ) )
+            .catch(console.log);
+          // Get partner response
+          msg.channel
+            .sendEmbed( FORMAT.embed( partner.getEmbed( msg.author, useOC, 'feeling' ) ) )
+            .catch(console.log);
+        } else {
+          // Remind user to create a partner for themselves
+          msg.channel
+            .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
+              `Hello, ${msg.author}!\n\nType the following to make your own ${CONFIG.partnerLabel}:\n\n${FORMAT.code("create NAME BASE VARIANT", CONFIG.prefix)}` ) ) )
+            .catch(console.log);
+        }
+        break;
+        
+      case msg.channel === SERVER.channels.battle:
+        msg.channel
+          .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
+            NPC.guide.getDialogue('tips_battle') ) ) )
+          .catch(console.log);
+        break;
+        
+      case msg.channel === SERVER.channels.shop:
+        msg.channel
+          .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
+            NPC.guide.getDialogue('tips_shop') ) ) )
+          .catch(console.log);
+        break;
+        
+      default:
+        msg.channel
+          .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
+            NPC.guide.getDialogue('random') ) ) )
+          .catch(console.log);
+        break;
+    }
+  },
+  
   // Partner Customization
   create: function(msg, args, useOC) {
     if ( allPartners.has( msg.author.id ) ) {
@@ -996,28 +1050,8 @@ CLIENT.on( 'message', msg => {
   // Find out if we should display OC avatars
   let useOC = CONFIG.enableOC && SERVER.channels.oc === msg.channel;
   
-  // React to mention at me in MAIN or DM only
-  if ( msg.mentions.users.exists('username', SECRET.botuser) 
-      && (msg.type === "dm" || msg.channel === SERVER.channels.main) ) {
-    if ( allPartners.has( msg.author.id ) ) {
-      let partner = allPartners.get(msg.author.id);
-      // Check in on partner status
-      msg.channel
-        .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
-          `Hello, ${msg.author}!\n\nHow is your ${CONFIG.partnerLabel}, ${partner.getName()}, doing?` ) ) )
-        .catch(console.log);
-      // Get partner response
-      msg.channel
-        .sendEmbed( FORMAT.embed( partner.getEmbed( msg.author, useOC, 'feeling' ) ) )
-        .catch(console.log);
-    } else {
-      // Remind user to create a partner for themselves
-      msg.channel
-        .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
-          `Hello, ${msg.author}!\n\nType the following to make your own ${CONFIG.partnerLabel}:\n\n${FORMAT.code("create NAME BASE VARIANT", CONFIG.prefix)}` ) ) )
-        .catch(console.log);
-    }
-  }
+  // React to mention at me
+  if ( msg.mentions.users.has(CLIENT.user.id) ) COMMAND.tips(msg, null, useOC);
   
   // Ignore not commands
   if (!msg.content.startsWith(CONFIG.prefix)) return;
