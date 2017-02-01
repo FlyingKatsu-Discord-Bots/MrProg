@@ -13,7 +13,7 @@ var FactoryNPC = function( input ) {
     warning: "https://cdn.pbrd.co/images/hXrbGDHil.png",
     error: "https://cdn.pbrd.co/images/hXrbGDHil.png"
   };
-  this.dialogue = {};
+  this.dialogue = input.dialogue || {};
 };
 
 
