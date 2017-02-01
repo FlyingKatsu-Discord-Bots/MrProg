@@ -584,7 +584,7 @@ var COMMAND = {
         if ( name.substr(-CONFIG.suffix.length).toUpperCase() === CONFIG.suffix.toUpperCase() ) {
           trimmedName = trimmedName.substr(0, trimmedName.length - CONFIG.suffix.length);
         }
-        if ( !FORMAT.isAlphaNumericJP( trimmedName ) ) {
+        if ( !trimmedName || !FORMAT.isAlphaNumericJP( trimmedName ) ) {
           msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
             .catch(console.log);
           return;
@@ -622,7 +622,7 @@ var COMMAND = {
         if ( name.substr(-CONFIG.suffix.length).toUpperCase() === CONFIG.suffix.toUpperCase() ) {
           trimmedName = trimmedName.substr(0, trimmedName.length - CONFIG.suffix.length);
         }
-        if ( !FORMAT.isAlphaNumericJP( trimmedName ) ) {
+        if ( !trimmedName || !FORMAT.isAlphaNumericJP( trimmedName ) ) {
           msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
             .catch(console.log);
           msg.channel.sendEmbed( FORMAT.embed( 
