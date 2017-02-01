@@ -29,10 +29,8 @@ const SERVER = {
 };
 
 const COMMONREGEX = {
-  asterix: /\*/ig,
   hash: /#/ig,
-  newline: /\n/ig,
-  suffix: /\.EXE/ig // TODO: make this not hardcoded
+  newline: /\n/ig
 };
 
 String.prototype.strip = function(v) {
@@ -548,7 +546,7 @@ var COMMAND = {
         .catch(console.log);
     } else {
 
-      var name = args[0] || null,
+      let name = args[0] || null,
           base = args[1] || null,
           variant = args[2] || null;
       
@@ -579,19 +577,21 @@ var COMMAND = {
       }
       
       // Check Name
-      if (name && name.strip("asterix")) {
-        name = name.strip("suffix");
+      if (!name || name === "*") {
+        name = null;
       } else {
-        name = ENUM.Preset.properties[ENUM.Preset[base]].variants[variant].custom.name.strip("suffix");
+        let trimmedName = name;
+        if ( name.substr(-CONFIG.suffix.length).toUpperCase() === CONFIG.suffix.toUpperCase() ) {
+          trimmedName = trimmedName.substr(0, trimmedName.length - CONFIG.suffix.length);
+        }
+        if ( !FORMAT.isAlphaNumericJP( trimmedName ) ) {
+          msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
+            .catch(console.log);
+          return;
+        } else {
+          name = name.substr(0,1).toUpperCase() + name.substr(1);
+        }
       }
-      
-      if ( !name || ( name && !FORMAT.isAlphaNumericJP( name ) ) ) {
-        msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
-          .catch(console.log);
-        return;
-      }
-      
-      if ( CONFIG.enforceSuffix ) name += CONFIG.suffix;
       
       // Create new
       allPartners.set( msg.author.id, 
@@ -609,26 +609,37 @@ var COMMAND = {
     }
   },  
   rename: function(msg, args, useOC) {
-    var name = args[0] || null;
-    if (name) name = name.strip("suffix");
-      
-    if ( !name || ( name && !FORMAT.isAlphaNumericJP( name ) ) ) {
-      msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
-        .catch(console.log);
-      msg.channel.sendEmbed( FORMAT.embed( 
-        allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'confused') ) )
-        .catch(console.log);
-      return;
-    }
-    
-    if ( CONFIG.enforceSuffix ) name += CONFIG.suffix;
-    
+    let name = args[0] || null;
+
     if ( allPartners.has( msg.author.id ) ) {
       let partner = allPartners.get(msg.author.id);
+      
+      // Check Name
+      if (!name || name === "*") {
+        name = null;
+      } else {
+        let trimmedName = name;
+        if ( name.substr(-CONFIG.suffix.length).toUpperCase() === CONFIG.suffix.toUpperCase() ) {
+          trimmedName = trimmedName.substr(0, trimmedName.length - CONFIG.suffix.length);
+        }
+        if ( !FORMAT.isAlphaNumericJP( trimmedName ) ) {
+          msg.reply(`${FORMAT.inline(name)} is not a valid [name]\n[name] should be alphanumeric, kana, and/or kanji.\nAny required suffix will be added automatically.`)
+            .catch(console.log);
+          msg.channel.sendEmbed( FORMAT.embed( 
+            allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'confused') ) )
+            .catch(console.log);
+          return;
+        } else {
+          name = name.substr(0,1).toUpperCase() + name.substr(1);
+        }
+      }
+      
       partner.setName(name);
+      
       msg.channel.sendEmbed( FORMAT.embed( 
         allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'customized') ) )
         .catch(console.log);
+    
     } else {
       msg.reply(`BUT YOU DON'T HAVE A ${CONFIG.partnerLabel.toUpperCase()} YET!!`)
         .catch(console.log);

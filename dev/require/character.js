@@ -1,5 +1,6 @@
 const CUSTOM = require("./custom.js");
 const ENUM = require("./enum.js");
+const CONFIG = require("./config/server.js");
 
 const LevelTiers = {
   scale: [ 100, 200, 350, 500, 750, 1000, 1500, 2000, 2500, 3000, 5000 ],
@@ -203,7 +204,14 @@ FactoryPartner.prototype.getBattleStats = function() {
     return output;
 };
 FactoryPartner.prototype.getName = function() {
-    return this.custom.name || this.getVariant().custom.name;
+  let output = this.custom.name || this.getVariant().custom.name;
+  if (CONFIG.enforceSuffix) {
+    if (output.substr(-CONFIG.suffix.length).toUpperCase() === CONFIG.suffix.toUpperCase()) {
+      output = output.substr(0, output.length - CONFIG.suffix.length);
+    }
+    output += CONFIG.suffix;
+  }
+  return output;
   };
 FactoryPartner.prototype.getImg = function( useOC ) {
     if ( useOC && this.custom.img ) {
