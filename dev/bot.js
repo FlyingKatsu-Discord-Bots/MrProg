@@ -1188,6 +1188,9 @@ CLIENT.on( 'message', msg => {
   // Ignore own messages
   if (msg.author.bot) return;
   
+  // Ignore general channel
+  if (CONFIG.ignoreGeneral && msg.channel === SERVER.guild.channels.get(CONFIG.generalChannelID)) return;
+  
   // Find out if we should display OC avatars
   let useOC = CONFIG.enableOC && SERVER.channels.oc === msg.channel;
   
