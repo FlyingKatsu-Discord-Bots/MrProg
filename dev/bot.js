@@ -734,6 +734,13 @@ var COMMAND = {
         file: `temp/personality_${partner.getPersonality()}_${msg.author.id}.txt` 
       };
     },
+    phrases: function ( msg, partner, useOC ) {
+      let d = partner.getPhrases();
+      return { 
+        customdata: d, 
+        file: `temp/phrases_${msg.author.id}.txt` 
+      };
+    },
     partition: function( msg, partner, useOC ) {
       msg.reply("this hasn't been implemented yet!").catch(console.log);
       return;
@@ -853,6 +860,78 @@ var COMMAND = {
               `No changes were made to ${partner.getName()}'s dialogue. Are you sure you uploaded the right file?`, msg, useOC, partner );
           } else {
             msg.reply(`${counter} changes made to ${partner.getName()}'s dialogue`)
+              .catch(console.log);
+            msg.channel.sendEmbed( FORMAT.embed( 
+              allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'customized') ) )
+              .catch(console.log);
+          }          
+        },
+        statusResponder: function( status ) {
+          console.log("Status Code: " + status.code);
+          console.log("Reason: " + status.reason);
+          if (status.reason === "filetype") {
+            COMMAND.feedbackError( 
+            `That file is incompatible! File must be a TXT or JSON file.`, 
+            msg, useOC, partner );
+          } else if (status.reason === "filesize") {
+            COMMAND.feedbackError( 
+            `That file is too large! Maximum filesize allowed is ${SECRET.maxfilesize}`, 
+            msg, useOC, partner );
+          } else if ( status.reason ) {
+            COMMAND.feedbackError( `${status.reason}`, msg, useOC, partner );
+          }
+        }
+      };
+    },
+    phrases: function( msg, partner, useOC ) {
+      return {
+        expectedType: "json",
+        dataHandler: function( json, uri ) {
+          let errorMsg = "";
+          let customPhrases = [];
+          let emptyModifiers = new CUSTOM.Modifiers();
+          for ( let i = 0; i < 5 && i < json.length; i++ ) {
+            if ( json[i].hasOwnProperty("sit") ) {
+              if ( emptyModifiers.hasOwnProperty(json[i].sit) ) {
+                if ( json[i].hasOwnProperty("phrase") ) {
+                  // Check that length is <= 128 and > 0 
+                  if ( json[i].phrase.length > 0 && json[i].phrase.length <= 128 ) {
+                    // Check that it does not contain only asterisks
+                    if ( !UTIL.boolMapReduce( 
+                          true, 
+                          json[i].phrase, 
+                          function( item ) {
+                            return item === "*" || item === " ";
+                          }, 
+                          UTIL.reduceAND) 
+                    ) {
+                      // FINALLY add it to the custom phrase array
+                      customPhrases.push(json[i]);
+                    } else {
+                      errorMsg += `- Custom phrase must contain more than just asterisks * ! Skipping #${i}...\n`;
+                    }
+                  } else {
+                    errorMsg += `- Custom phrase must be less than 128 characters and more than 0! Skipping #${i}...\n`;
+                  }
+                } else {
+                  errorMsg += `- Missing a custom phrase definition! Skipping #${i}...\n`;
+                }
+              } else {
+                errorMsg += `- Invalid situation keyword! Skipping #${i}...\n`;
+              }
+            } else {
+              errorMsg += `- Missing a situation keyword! Skipping #${i}...\n`;
+            }
+          }
+          if ( errorMsg ) {
+            msg.author.sendMessage("**Load Phrases Error Log**\n"+errorMsg);
+          }
+          if ( customPhrases.length === 0 ) {
+            COMMAND.feedbackError( 
+              `No changes were made to ${partner.getName()}'s custom phrases. Are you sure you uploaded the right file?`, msg, useOC, partner );
+          } else {
+            partner.setPhrases(customPhrases);
+            msg.reply(`${customPhrases.length} changes made to ${partner.getName()}'s custom phrases`)
               .catch(console.log);
             msg.channel.sendEmbed( FORMAT.embed( 
               allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'customized') ) )

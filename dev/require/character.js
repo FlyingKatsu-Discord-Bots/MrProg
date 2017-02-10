@@ -339,6 +339,9 @@ FactoryPartner.prototype.setModifier = function( sit, mod ) {
 FactoryPartner.prototype.setDialogue = function( sit, feeling, text ) {
     this.custom.modifiers[sit].dialogue[feeling] = text;
   };
+FactoryPartner.prototype.setPhrases = function( v ) {
+    this.custom.phrases = v;
+  };
 // Extend FactoryChar.prototype
 for (f in FactoryChar.prototype) { 
   if ( FactoryChar.prototype.hasOwnProperty(f) ) FactoryPartner.prototype[f] = FactoryChar.prototype[f]; 
