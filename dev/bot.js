@@ -1089,6 +1089,11 @@ CLIENT.on( 'message', msg => {
   // React to mention at me
   if ( msg.mentions.users.has(CLIENT.user.id) ) COMMAND.tips(msg, null, useOC);
   
+  // Check if user fake-mentions their partner
+  if ( allPartners.has(msg.author.id) && msg.content.toLowerCase().includes("@"+allPartners.get(msg.author.id).getName().toLowerCase())) {
+    COMMAND.hey(msg, msg.content.trim().split(/[ ,]+/), useOC);
+  }
+  
   // Ignore not commands
   if (!msg.content.startsWith(CONFIG.prefix)) return;
 

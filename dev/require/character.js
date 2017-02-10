@@ -257,7 +257,10 @@ FactoryPartner.prototype.getSitFromPhrase = function (input) {
     //console.log (stream.length);
     //console.log (input.length);
     while (s <= stream.length && i < input.length) {
-      if (stream[s] === "*") {
+      if (input[i].includes("@"+this.getName().toLowerCase())) {
+        // ignore and proceed to check next i with current s
+        i++;
+      } else if (stream[s] === "*") {
         // anything goes, so continue to next pair
         //console.log("anything goes!");
         s++;
