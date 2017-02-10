@@ -8,6 +8,7 @@ var CUSTOM = {
     this.alignment = input.alignment || null;
     this.personality = input.personality || null;
     this.modifiers = input.modifiers || new CUSTOM.Modifiers();
+    this.phrases = input.phrases || new CUSTOM.Phrases();
   },
 
   Modifiers: function( input ) {
@@ -29,6 +30,12 @@ var CUSTOM = {
     this.comfort = input.comfort || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.customized = input.customized || { mod: null, dialogue: new CUSTOM.Dialogue() };
     this.stats = input.stats || { mod: null, dialogue: new CUSTOM.Dialogue() };
+  },
+  
+  Phrases: function() {
+    // USAGE:
+    // first * thirdA|thirdB1_B2|thirdC fourth * sixth
+    return []; // only allow alphanumeric, ', ", and special |, *, _
   },
 
   Dialogue: function( input ) {

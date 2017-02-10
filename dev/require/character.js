@@ -49,12 +49,6 @@ var FactoryPartner = function( _input ) {
   this.zenny = 0;
   this.bugfrag = 0;
   this.custom = new CUSTOM.Customization( { name: input.name } );  
-  this.phrases = [ // only allow alphanumeric, |, *, ', "
-    { phrase: "hi|hey|yo|hello", sit: "greeting" },
-    { phrase: "how are you|ya", sit: "feeling" },
-    { phrase: "I|I'm * scared", sit: "comfort" },
-    { phrase: "is|will * * be ok|okay|fine", sit: "comfort" }
-  ];
   // Extend FactoryChar
   let temp = new FactoryChar( input );
   for (t in temp) { 
@@ -238,7 +232,7 @@ FactoryPartner.prototype.getAlignment = function() {
 FactoryPartner.prototype.getPersonality = function() {
     return this.custom.personality || this.getVariant().custom.personality;
   };
-FactoryPartner.prototype.getModifierSet = function( ) {
+FactoryPartner.prototype.getModifierSet = function() {
     return this.custom.modifiers || 
       ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].modifiers;
   };
@@ -250,18 +244,68 @@ FactoryPartner.prototype.getDialogue = function( sit, feeling ) {
     return this.custom.modifiers[sit].dialogue[feeling] || 
       ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].modifiers[sit].dialogue[feeling];
   };
-FactoryPartner.prototype.getSitFromPhrase = function (phrase) {
-  let output = "fakenod";
-  for ( let i = 0; i < this.phrases.length; i++ ) {
-    let stream = this.phrases[i].split(/[ ,]+/);
-    // For s in stream
-      // If s includes |, split(|) and see if any of them matches current phrase[p]
-        // If it's a match, check the next s with the next p
-      // If s is *, check the next s with the  next p
-      // Else, if s matches phrase[p], check next s with next p
-      // If we reached this spot and it is not the beginning or end of stream, go to next streamset
+FactoryPartner.prototype.getPhrases = function() {
+    return this.custom.phrases || 
+      ENUM.Personality.properties[ENUM.Personality[this.getPersonality()]].phrases;
+  };
+FactoryPartner.prototype.getSitFromPhrase = function (input) {
+  let phraseArray = this.getPhrases();
+  for ( let p = 0; p < phraseArray.length; p++ ) {    
+    let stream = phraseArray[p].phrase.split(/[ ,]+/);    
+    let s = 0;
+    let i = 0;    
+    //console.log (stream.length);
+    //console.log (input.length);
+    while (s <= stream.length && i < input.length) {
+      if (stream[s] === "*") {
+        // anything goes, so continue to next pair
+        //console.log("anything goes!");
+        s++;
+        i++;
+      } else if (stream[s].includes("|")) {
+        let substream = stream[s].split("|");
+        let matched = false;
+        for (w in substream) {
+          //console.log(substream[w]);
+          if (substream[w].includes("_")) {
+            if (substream[w] === input[i]+"_"+input[i+1]) {
+              matched = true;
+              i++;
+            }
+          } else if (substream[w] === input[i]) matched = true;
+        }
+        if (matched) {
+          // found a match, so continue to next pair
+          //console.log("| Match!");
+          s++;
+          i++;
+        } else {
+          // No match, so exit to next p in phrases
+          //console.log("No match checking | !");
+          break;
+        }
+      } else if (stream[s] !== input[i]) {
+        // No match, so exit to next p in phrases
+        //console.log("No match this time!");
+        break;
+      } else {
+        // stream[s] must match input[i] so increment both
+        //console.log("Assumed Match!");
+        s++;
+        i++;
+      }
+      //console.log(s + ", " + i);
+      if (s === stream.length) {
+        // we matched the whole stream, so let's output the matching sit
+        //console.log("quit all loops we found it!");
+        return phraseArray[p].sit;
+      } else {
+        //console.log("keep searching yo");
+      }
+    }
   }
-  return output;
+  // None of the phrases matched, so pretend to acknowledge user
+  return "fakenod";
 };
 // PARTNER SETTERS
 FactoryPartner.prototype.setName = function( v ) {

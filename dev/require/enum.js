@@ -146,6 +146,12 @@ var ENUM = {
         name: "Default Dialogue Set",
         desc: "Default dialogue lines for anyone",
         value: 1,
+        phrases: [
+          { phrase: "hi|hey|yo|hello", sit: "greeting" },
+          { phrase: "how are you|ya", sit: "feeling" },
+          { phrase: "I|I'm * scared", sit: "comfort" },
+          { phrase: "is|will * gonna|going_to be ok|okay|fine", sit: "comfort" }
+        ],
         modifiers: {
           greeting: { mod: 0.1, dialogue: { 
             happy: "Hello, @user!", 
