@@ -953,13 +953,16 @@ var COMMAND = {
     msg.reply('This feature not yet fully supported. Planned for V.0.2.0').catch(console.log);
   },
   hey: function(msg, args, useOC) {
-    let phrase = args;//.join(" ");
+    let phrase = args;
+    // TODO: Double-check that this does not conflict with custom command words
+    if (args[0] === CONFIG.prefix+"hey" ) phrase = args.slice(1);
 
     if ( allPartners.has( msg.author.id ) ) {
       let partner = allPartners.get(msg.author.id);
       
-      let sit = partner.getSitFromPhrase(phrase);
-      console.log(sit);
+      let sit = (phrase.length === 0) ? "greeting" : partner.getSitFromPhrase(phrase);
+      //console.log(sit);
+      //console.log(partner.getPhrases());
       
       msg.channel.sendEmbed( FORMAT.embed( 
         allPartners.get(msg.author.id).getEmbed( msg.author, useOC, sit) ) )
@@ -1090,8 +1093,9 @@ CLIENT.on( 'message', msg => {
   if ( msg.mentions.users.has(CLIENT.user.id) ) COMMAND.tips(msg, null, useOC);
   
   // Check if user fake-mentions their partner
-  if ( allPartners.has(msg.author.id) && msg.content.toLowerCase().includes("@"+allPartners.get(msg.author.id).getName().toLowerCase())) {
+  if ( COMMAND.isPermitted("hey", msg) && allPartners.has(msg.author.id) && msg.content.toLowerCase().includes("@"+allPartners.get(msg.author.id).getName().toLowerCase())) {
     COMMAND.hey(msg, msg.content.trim().split(/[ ,]+/), useOC);
+    return;
   }
   
   // Ignore not commands

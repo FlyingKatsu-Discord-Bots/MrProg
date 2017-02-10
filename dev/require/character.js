@@ -251,7 +251,8 @@ FactoryPartner.prototype.getPhrases = function() {
 FactoryPartner.prototype.getSitFromPhrase = function (input) {
   let phraseArray = this.getPhrases();
   for ( let p = 0; p < phraseArray.length; p++ ) {    
-    let stream = phraseArray[p].phrase.split(/[ ,]+/);    
+    let stream = phraseArray[p].phrase.split(/[ ,]+/);
+    
     let s = 0;
     let i = 0;    
     //console.log (stream.length);

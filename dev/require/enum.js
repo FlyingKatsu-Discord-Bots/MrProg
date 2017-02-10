@@ -149,7 +149,7 @@ var ENUM = {
         phrases: [
           { phrase: "hi|hey|yo|hello", sit: "greeting" },
           { phrase: "how are you|ya", sit: "feeling" },
-          { phrase: "I|I'm * scared", sit: "comfort" },
+          { phrase: "I_am|I'm scared", sit: "comfort" },
           { phrase: "is|will * gonna|going_to be ok|okay|fine", sit: "comfort" }
         ],
         modifiers: {
