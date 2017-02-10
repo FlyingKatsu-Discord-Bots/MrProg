@@ -874,7 +874,7 @@ Preset: {
       }
   },
 
-  haspreset: function(presetkey) {
+  hasPreset: function(presetkey) {
     return this.properties[this[presetkey]];
   },
   hasVariant: function(presetkey,variantkey) {
