@@ -1108,7 +1108,11 @@ CLIENT.on('guildMemberAvailable', () => {
   console.log('Someone came online');
 });
 CLIENT.on('disconnect', closeEvent => {
-  console.log('Mr.Prog went offline with code ' + closeEvent.code);
+  if (closeEvent) {
+    console.log('Mr.Prog went offline with code ' + closeEvent.code);
+  } else {
+    console.log('Mr.Prog went offline with unknown code');
+  }
   disconnected = true;
   CLIENT.user.setAFK(true);
   CLIENT.user.setStatus('dnd');
@@ -1118,10 +1122,16 @@ CLIENT.on('reconnecting', () => {
   console.log('Mr.Prog is attempting to reconnect');
 });
 CLIENT.on('warn', warn => {
-  console.log('WARNING: ' + warn);
+  if (warn) {
+    console.log('Warning: ' + warn);
+  }
 });
 CLIENT.on('error', error => {
-  console.log('ERROR: ' + error.message);
+  if (error) {
+    console.log('Error: ' + error.message);
+  } else {
+    console.log('Unknown error');
+  }
 });
 
 // Initialization Procedure
