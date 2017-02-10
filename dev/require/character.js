@@ -16,15 +16,15 @@ const LevelTiers = {
 var FactoryChar = function( _input ) {
     let input = _input || {};
     this.owner = input.owner || null;
-    this.baseKey = ENUM.Preset[input.base] || 1;
-    this.variantKey = input.variant || Object.keys(ENUM.Preset.properties[baseKey].variants)[0];
+    this.presetKey = ENUM.Preset[input.preset] || 1;
+    this.variantKey = input.variant || Object.keys(ENUM.Preset.properties[presetKey].variants)[0];
     this.level = input.level || 0;
 };
 // ===============================================
 // Factory Char methods (for prototypal inheritance)
 // ===============================================
 FactoryChar.prototype.getVariant = function() {
-  return ENUM.Preset.properties[this.baseKey].variants[this.variantKey];
+  return ENUM.Preset.properties[this.presetKey].variants[this.variantKey];
 };
 FactoryChar.prototype.updateXP = function( delta ) {
   this.xp += delta;
@@ -103,7 +103,7 @@ FactoryPartner.prototype.getBattleStats = function() {
       folder: "None",
       weak: "None"
     };
-    let base = {
+    let preset = {
       hp: 100,
       basic: "Buster",
       charge: 1,
@@ -184,15 +184,15 @@ FactoryPartner.prototype.getBattleStats = function() {
         }
       };*/
     output =  "\r\n```\r\n";
-    output +=  `HP            ${hp} / ${base.hp + boost.hp}\r\n`;
-    output +=  `ATK           ${base.atk}  (+${boost.atk})\r\n`;
-    output +=  `DEF           x${base.def} (+${boost.def})\r\n`;
-    output +=  `SPD           x${base.spd} (+${boost.spd})\r\n`;
+    output +=  `HP            ${hp} / ${preset.hp + boost.hp}\r\n`;
+    output +=  `ATK           ${preset.atk}  (+${boost.atk})\r\n`;
+    output +=  `DEF           x${preset.def} (+${boost.def})\r\n`;
+    output +=  `SPD           x${preset.spd} (+${boost.spd})\r\n`;
     output +=  "```\r\n```\r\n";
     output +=  `Basic         ${boost.basic}\r\n`;
-    output +=  `Charge        x${base.charge} (+${boost.charge})\r\n`;
+    output +=  `Charge        x${preset.charge} (+${boost.charge})\r\n`;
     output +=  "```\r\n```\r\n";
-    output +=  `Weakness      ${base.weak}\r\n`;
+    output +=  `Weakness      ${preset.weak}\r\n`;
     output +=  "```\r\n```\r\n";
     output +=  `Total RAM     4MB\r\n`;
     output +=  `Total Drive   500MB\r\n`;
@@ -315,8 +315,8 @@ FactoryPartner.prototype.getSitFromPhrase = function (input) {
 FactoryPartner.prototype.setName = function( v ) {
     this.custom.name = v;
   };
-FactoryPartner.prototype.setBase = function( v ) {
-    this.custom.base = v;
+FactoryPartner.prototype.setPreset = function( v ) {
+    this.custom.preset = v;
   };
 FactoryPartner.prototype.setImg = function( v ) {
     this.custom.img = v;
@@ -353,7 +353,7 @@ var FactoryBoss = function( _input ) {
   // Own Properties
   this.propA = input.propA || "A";
   // Defaults
-  input.base = "boss";
+  input.preset = "boss";
   input.owner = null;  
   // Extend FactoryChar
   let temp = new FactoryChar( input );
@@ -380,7 +380,7 @@ var FactoryMinion = function( _input ) {
   this.xp = 0;
   this.mood = 1;
   // Defaults
-  input.base = "virus";  
+  input.preset = "virus";  
   // Extend FactoryChar
   let temp = new FactoryChar( input );
   for (t in temp) { 

@@ -874,20 +874,20 @@ Preset: {
       }
   },
 
-  hasBase: function(basekey) {
-    return this.properties[this[basekey]];
+  haspreset: function(presetkey) {
+    return this.properties[this[presetkey]];
   },
-  hasVariant: function(basekey,variantkey) {
-    if( this.hasBase(basekey) ) {
-      return this.properties[this[basekey]].variants[variantkey];
+  hasVariant: function(presetkey,variantkey) {
+    if( this.hasPreset(presetkey) ) {
+      return this.properties[this[presetkey]].variants[variantkey];
     }
     return false;
   },
   getSummary: function(key) {
-    let base = this.properties[key];
-    let vlist = base.variants;
+    let preset = this.properties[key];
+    let vlist = preset.variants;
     let btk = "`";
-    let output = `${base.desc}\r\n------------------------\r\n${btk}${btk}${btk}\r\n`;
+    let output = `${preset.desc}\r\n------------------------\r\n${btk}${btk}${btk}\r\n`;
     let count = 0;
     for ( let v in vlist ) {
       count++;
@@ -898,18 +898,18 @@ Preset: {
     }
     if (count == 0) output = `------------------------\r\nNone of these variants is available yet!\r\n${btk}${btk}${btk}\r\n`;
     output += `${btk}${btk}${btk}\r\n------------------------\r\n`;
-    return { title: `${base.name} Summary (${base.id})`, desc: output, imgurl: base.img, foot: `${CONFIG.prefix}info variants ${base.id.toUpperCase()} [VARIANT]` };
+    return { title: `${preset.name} Summary (${preset.id})`, desc: output, imgurl: preset.img, foot: `${CONFIG.prefix}info variants ${preset.id.toUpperCase()} [VARIANT]` };
   },
   getDetails: function() {
     let str = "--------------------------------\r\n";
     let btk = "`";
     for ( let p in this.properties ) {
-      let base = this.properties[p];
-      if (Object.keys(base.variants).length > 0) {
-        str += `**${base.name}** : ${base.desc}\r\n${btk}${btk}${btk}\r\nPreset: ${base.id}\nVariants: `;
-        let count = Object.keys(base.variants).length;
-        for ( let vkey in base.variants ) {
-          str += `${base.variants[vkey].id}`;
+      let preset = this.properties[p];
+      if (Object.keys(preset.variants).length > 0) {
+        str += `**${preset.name}** : ${preset.desc}\r\n${btk}${btk}${btk}\r\nPreset: ${preset.id}\nVariants: `;
+        let count = Object.keys(preset.variants).length;
+        for ( let vkey in preset.variants ) {
+          str += `${preset.variants[vkey].id}`;
           if ( count-- != 1 ) str += " | ";
         }
         str += `\r\n${btk}${btk}${btk}\r\n--------------------------------\r\n`;
@@ -917,13 +917,13 @@ Preset: {
     }
     return str;
   },
-  getVariantDetails: function(basekey, variant) {
-    let v = this.properties[this[basekey]].variants[variant];
+  getVariantDetails: function(presetkey, variant) {
+    let v = this.properties[this[presetkey]].variants[variant];
     let desc = "";
     desc += `**Alignment**:  ${ENUM.Moral.properties[ENUM.Moral[v.custom.alignment]].name}\r\n`;
     desc += `**Personality**:  ${ENUM.Personality.properties[ENUM.Personality[v.custom.personality]].name}\r\n`;
     // TODO: Add battle stats to this
-    let foot = `${CONFIG.prefix}create NAME ${basekey.toUpperCase()} ${variant.toUpperCase()}`;
+    let foot = `${CONFIG.prefix}create NAME ${presetkey.toUpperCase()} ${variant.toUpperCase()}`;
     return { 
         title: v.custom.name, 
         thumb: v.custom.img, 

@@ -433,7 +433,7 @@ var COMMAND = {
   infoArgs: {
     preset: function( msg, filter ) {
       if (filter[1]) {
-        preset = ENUM.Preset.hasBase(filter[1].toLowerCase());
+        preset = ENUM.Preset.hasPreset(filter[1].toLowerCase());
         if ( preset ) {
           msg.channel.sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 
             'normal', 'normal', `Loading information about the ${FORMAT.inline(filter[1])} preset...`
@@ -458,7 +458,7 @@ var COMMAND = {
     
     variant: function( msg, filter ) {
       if (filter[1] && filter[2]) {
-        preset = ENUM.Preset.hasBase(filter[1].toLowerCase());
+        preset = ENUM.Preset.hasPreset(filter[1].toLowerCase());
         variant = filter[2].toLowerCase();
         isVariant = ENUM.Preset.hasVariant(preset.id, variant);
         if ( preset && isVariant ) {
@@ -507,7 +507,7 @@ var COMMAND = {
           // Remind user to create a partner for themselves
           msg.channel
             .sendEmbed( FORMAT.embed( NPC.guide.getEmbed( 'normal', 'normal', 
-              `Hello, ${msg.author}!\n\nType the following to make your own ${CONFIG.partnerLabel}:\n\n${FORMAT.code("create NAME BASE VARIANT", CONFIG.prefix)}` ) ) )
+              `Hello, ${msg.author}!\n\nType the following to make your own ${CONFIG.partnerLabel}:\n\n${FORMAT.code("create NAME PRESET VARIANT", CONFIG.prefix)}` ) ) )
             .catch(console.log);
         }
         break;
@@ -547,18 +547,18 @@ var COMMAND = {
     } else {
 
       let name = args[0] || null,
-          base = args[1] || null,
+          preset = args[1] || null,
           variant = args[2] || null;
       
-      // Check Base
-      if (base) {
-        base = base.toLowerCase();
+      // Check preset
+      if (preset) {
+        preset = preset.toLowerCase();
       } else {
-        base = ENUM.Preset.properties[1].id;
+        preset = ENUM.Preset.properties[1].id;
       }
       
-      if ( !ENUM.Preset.hasBase( base ) ) {
-        msg.reply(`${FORMAT.inline(base)} is not a recognized [preset]`)
+      if ( !ENUM.Preset.hasPreset( preset ) ) {
+        msg.reply(`${FORMAT.inline(preset)} is not a recognized [preset]`)
           .catch(console.log);
         return;
       }
@@ -567,11 +567,11 @@ var COMMAND = {
       if (variant) {
         variant = variant.toLowerCase();
       } else {
-        variant = Object.keys(ENUM.Preset.properties[ENUM.Preset[base]].variants)[0];
+        variant = Object.keys(ENUM.Preset.properties[ENUM.Preset[preset]].variants)[0];
       }
       
-      if ( !ENUM.Preset.hasVariant( base, variant ) ) {
-        msg.reply(`${FORMAT.inline(base)} ${FORMAT.inline(variant)} is not a recognized [preset] [variant] pair`)
+      if ( !ENUM.Preset.hasVariant( preset, variant ) ) {
+        msg.reply(`${FORMAT.inline(preset)} ${FORMAT.inline(variant)} is not a recognized [preset] [variant] pair`)
           .catch(console.log);
         return;
       }
@@ -598,7 +598,7 @@ var COMMAND = {
         new CHARACTER.Partner( { 
           owner: msg.author, 
           name: name, 
-          base: base, 
+          preset: preset, 
           variant: variant } ) );
       msg.channel.sendEmbed( FORMAT.embed( 
         allPartners.get(msg.author.id).getEmbed( msg.author, useOC, 'greeting') ) )
