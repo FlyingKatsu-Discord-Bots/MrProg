@@ -1105,9 +1105,13 @@ if (Object.freeze) Object.freeze(COMMAND);
 // =========================================================
 // Miscellaneous Events
 CLIENT.on('guildMemberAvailable', () => {
+  let d = new Date();
+  console.log(d.toLocaleString());
   console.log('Someone came online');
 });
 CLIENT.on('disconnect', closeEvent => {
+  let d = new Date();
+  console.log(d.toLocaleString());
   if (closeEvent) {
     console.log('Mr.Prog went offline with code ' + closeEvent.code);
   } else {
@@ -1119,14 +1123,20 @@ CLIENT.on('disconnect', closeEvent => {
   CLIENT.user.setGame("Unexpected Disconnect!");
 });
 CLIENT.on('reconnecting', () => {
+  let d = new Date();
+  console.log(d.toLocaleString());
   console.log('Mr.Prog is attempting to reconnect');
 });
 CLIENT.on('warn', warn => {
+  let d = new Date();
+  console.log(d.toLocaleString());
   if (warn) {
     console.log('Warning: ' + warn);
   }
 });
 CLIENT.on('error', error => {
+  let d = new Date();
+  console.log(d.toLocaleString());
   if (error) {
     console.log('Error: ' + error.message);
   } else {
@@ -1138,6 +1148,8 @@ CLIENT.on('error', error => {
 CLIENT.on( 'ready', () => {
   
   if (disconnected) {
+    let d = new Date();
+    console.log(d.toLocaleString());
     console.log("RECOVERED from D/C");
     
     CLIENT.user.setAFK(false);
@@ -1145,7 +1157,8 @@ CLIENT.on( 'ready', () => {
     CLIENT.user.setGame(CONFIG.game);
     
   } else {
-    
+    let d = new Date();
+    console.log(d.toLocaleString());
     console.log('Mr.Prog the Discord bot is now online');
     CLIENT.user.setStatus('dnd');
     
