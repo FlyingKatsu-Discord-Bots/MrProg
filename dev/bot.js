@@ -693,13 +693,13 @@ var COMMAND = {
             console.log("ERROR: " + error);
             console.log("Done writing!");
             msg.author.send(`Here is your ${option} file!`, { file: output.file })
-              .then( 
+              /*.then( 
                 FS.unlink( output.file, (error) => {
                   if (error) console.error(error);
                   console.log("File deleted!");
                 } ),
                 (error) => { if (error) console.error(error); }
-                 )
+                 )*/
               .catch(console.log);
             console.log("end of writefile handler");
         });
