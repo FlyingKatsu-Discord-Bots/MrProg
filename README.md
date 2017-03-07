@@ -1,6 +1,7 @@
 # Mr. Prog
 A Discord bot themed for MMBN fans (or anyone who wants a bot friend)
 
+* [Video Demo](https://www.youtube.com/watch?v=SYaUTWiAm-4)
 * [Documentation and Help Guide](https://warped2713.gitbooks.io/mrprog/content/)
 * [Discord Test Server](https://discord.gg/An86Wxy)
 
