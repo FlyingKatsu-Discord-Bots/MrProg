@@ -1,0 +1,494 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Mr.Prog Bot\n\n\nMr.Prog Bot is a \nDiscord.js\n bot for the \nDiscord chat client\n. Mr.Prog is an interactive bot that enables members of your Discord server to create, customize, and interact with their own personal NetNavi.\n\n\nFeatures\n\n\nCurrent Features\n\n\n\n\nCreate a partner navi\n\n\nCustomize your partner navi's appearance\n\n\nCustomize your partner navi's dialogue\n\n\nTalk to your partner navi using custom phrase-response pairs\n\n\n\n\nWork-in-Progress Features\n\n\n\n\nServer admins\n: Customize bot preferences (WIP)\n\n\n\n\nPlanned Features\n\n\n\n\nTalk to each other's navis\n\n\nBattle against each other's navis\n\n\nBuy upgrades and battle chips for your partner navi\n\n\nSave the server from virus attacks and other netalerts\n\n\nServer mods\n: Reset or disable navis who break your server's rules\n\n\nServer admins\n: Customize shop inventory\n\n\nServer admins\n: Customize netalert events\n\n\nServer admins\n: Set up rewards for your supporters\n\n\n\n\nContribute\n\n\nIf you have a great idea for an extension or feature, let me know on my development server: \ndiscord.gg/9TVVmTY\n\n\nIf you want to develop add-ons yourself, fork the \nMr.Prog GitHub repository\n so I can see it!\n\n\nDisclaimer\n\n\nThe Mr.Prog bot was started at the request of TheHashyBrown on the \nMMBN3D BBS\n, and is developed for fans of the Mega Man Battle Network series.  \n\n\nMega Man Battle Network and all associated characters and assets are owned by \nCapcom\n who are in no way affliated with me or any other developers of the Mr.Prog bot.  \n\n\nAll official NetNavi character portraits were taken from the \nSprites Inc. archive\n.",
+            "title": "Home"
+        },
+        {
+            "location": "/#mrprog-bot",
+            "text": "Mr.Prog Bot is a  Discord.js  bot for the  Discord chat client . Mr.Prog is an interactive bot that enables members of your Discord server to create, customize, and interact with their own personal NetNavi.",
+            "title": "Mr.Prog Bot"
+        },
+        {
+            "location": "/#features",
+            "text": "",
+            "title": "Features"
+        },
+        {
+            "location": "/#current-features",
+            "text": "Create a partner navi  Customize your partner navi's appearance  Customize your partner navi's dialogue  Talk to your partner navi using custom phrase-response pairs",
+            "title": "Current Features"
+        },
+        {
+            "location": "/#work-in-progress-features",
+            "text": "Server admins : Customize bot preferences (WIP)",
+            "title": "Work-in-Progress Features"
+        },
+        {
+            "location": "/#planned-features",
+            "text": "Talk to each other's navis  Battle against each other's navis  Buy upgrades and battle chips for your partner navi  Save the server from virus attacks and other netalerts  Server mods : Reset or disable navis who break your server's rules  Server admins : Customize shop inventory  Server admins : Customize netalert events  Server admins : Set up rewards for your supporters",
+            "title": "Planned Features"
+        },
+        {
+            "location": "/#contribute",
+            "text": "If you have a great idea for an extension or feature, let me know on my development server:  discord.gg/9TVVmTY  If you want to develop add-ons yourself, fork the  Mr.Prog GitHub repository  so I can see it!",
+            "title": "Contribute"
+        },
+        {
+            "location": "/#disclaimer",
+            "text": "The Mr.Prog bot was started at the request of TheHashyBrown on the  MMBN3D BBS , and is developed for fans of the Mega Man Battle Network series.    Mega Man Battle Network and all associated characters and assets are owned by  Capcom  who are in no way affliated with me or any other developers of the Mr.Prog bot.    All official NetNavi character portraits were taken from the  Sprites Inc. archive .",
+            "title": "Disclaimer"
+        },
+        {
+            "location": "/channels/general/",
+            "text": "General Channel\n\n\nThe General Channel is the main place for you to interact with other netnavis and netops.\n\n\nRecognized Commands\n\n\nThe following commands are recognized in the General Channel:\n\n\n\n\n@MrProg\n\n\nhelp\n\n\ndisplay\n\n\nhey\n\n\njack\n\n\n\n\nSituation Responses\n\n\nIn addition to responding to recognized commands, Mr.Prog will also use the General Channel for the following situations:\n\n\n\n\nTBD",
+            "title": "General"
+        },
+        {
+            "location": "/channels/general/#general-channel",
+            "text": "The General Channel is the main place for you to interact with other netnavis and netops.",
+            "title": "General Channel"
+        },
+        {
+            "location": "/channels/general/#recognized-commands",
+            "text": "The following commands are recognized in the General Channel:   @MrProg  help  display  hey  jack",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/general/#situation-responses",
+            "text": "In addition to responding to recognized commands, Mr.Prog will also use the General Channel for the following situations:   TBD",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/channels/info/",
+            "text": "Info Channel\n\n\nThe Info Channel is the place for Mr.Prog-related announcements, such as netalerts and server status.\n\n\nRecognized Commands\n\n\nThe Info Channel is meant to be read-only, so it does not recognize any commands at all.\n\n\nSituation Responses\n\n\nMr.Prog uses the Info Channel for the following situations:\n\n\n\n\nTBD",
+            "title": "Info"
+        },
+        {
+            "location": "/channels/info/#info-channel",
+            "text": "The Info Channel is the place for Mr.Prog-related announcements, such as netalerts and server status.",
+            "title": "Info Channel"
+        },
+        {
+            "location": "/channels/info/#recognized-commands",
+            "text": "The Info Channel is meant to be read-only, so it does not recognize any commands at all.",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/info/#situation-responses",
+            "text": "Mr.Prog uses the Info Channel for the following situations:   TBD",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/channels/shop/",
+            "text": "Shop Channel\n\n\nThe Shop Channel is the main place for you to buy, sell, and trade items in your inventory for items made available by an admin/mod.  Shop inventory may change every day, depending on how the admin/mods configured the bot.\n\n\nRecognized Commands\n\n\nThe following commands are recognized in the Shop Channel:\n\n\n\n\nTBD\n\n\n\n\nSituation Responses\n\n\nIn addition to responding to recognized commands, Mr.Prog will also use the Shop Channel for the following situations:\n\n\n\n\nTBD",
+            "title": "Shop"
+        },
+        {
+            "location": "/channels/shop/#shop-channel",
+            "text": "The Shop Channel is the main place for you to buy, sell, and trade items in your inventory for items made available by an admin/mod.  Shop inventory may change every day, depending on how the admin/mods configured the bot.",
+            "title": "Shop Channel"
+        },
+        {
+            "location": "/channels/shop/#recognized-commands",
+            "text": "The following commands are recognized in the Shop Channel:   TBD",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/shop/#situation-responses",
+            "text": "In addition to responding to recognized commands, Mr.Prog will also use the Shop Channel for the following situations:   TBD",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/channels/battle/",
+            "text": "Battle Channel\n\n\nThe Battle Channel is the place for watching battles and issuing/responding to battle challenges. \n\n\nRecognized Commands\n\n\nThe following commands are recognized in the Battle Channel:\n\n\n\n\nTBD\n\n\n\n\nSituation Responses\n\n\nIn addition to responding to recognized commands, Mr.Prog will also use the Battle Channel for the following situations:\n\n\n\n\nTBD",
+            "title": "Battle"
+        },
+        {
+            "location": "/channels/battle/#battle-channel",
+            "text": "The Battle Channel is the place for watching battles and issuing/responding to battle challenges.",
+            "title": "Battle Channel"
+        },
+        {
+            "location": "/channels/battle/#recognized-commands",
+            "text": "The following commands are recognized in the Battle Channel:   TBD",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/battle/#situation-responses",
+            "text": "In addition to responding to recognized commands, Mr.Prog will also use the Battle Channel for the following situations:   TBD",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/channels/debug/",
+            "text": "Debug Channel\n\n\nThe Debug Channel is meant to be an admin/mod-only channel for debug messages, bot configuration, managing partner navi customizations, and testing features. \n\n\nRecognized Commands\n\n\nThe following commands are recognized in the Debug Channel:\n\n\n\n\nTBD\n\n\n\n\nSituation Responses\n\n\nIn addition to responding to recognized commands, Mr.Prog will also use the Debug Channel for the following situations:\n\n\n\n\nTBD",
+            "title": "Debug"
+        },
+        {
+            "location": "/channels/debug/#debug-channel",
+            "text": "The Debug Channel is meant to be an admin/mod-only channel for debug messages, bot configuration, managing partner navi customizations, and testing features.",
+            "title": "Debug Channel"
+        },
+        {
+            "location": "/channels/debug/#recognized-commands",
+            "text": "The following commands are recognized in the Debug Channel:   TBD",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/debug/#situation-responses",
+            "text": "In addition to responding to recognized commands, Mr.Prog will also use the Debug Channel for the following situations:   TBD",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/channels/direct-message/",
+            "text": "Direct Message Channel\n\n\nA Direct Message Channel is automatically created when you send a message to the Mr.Prog bot.  This channel allows you to download and upload customization files. It also helps prevent spamming the \n#general\n channel with everyone's \ncustomize\n commands.\n\n\nRecognized Commands\n\n\nThe following commands are recognized in the Direct Message Channel:\n\n\n\n\ncustomize\n\n\nsave\n\n\nload\n\n\nstats\n\n\nuse\n\n\nhelp\n\n\ndisplay\n\n\nhey\n\n\njack\n\n\n\n\nSituation Responses\n\n\nIn addition to responding to recognized commands, Mr.Prog will also use Direct Messages for the following situations:\n\n\n\n\nResponding to you using the help command in another channel\n\n\nTelling you that you need admin/mod privileges for a given command\n\n\nAlerting you when your navi's online status changes (such as when you go offline/away/busy)",
+            "title": "Direct Message"
+        },
+        {
+            "location": "/channels/direct-message/#direct-message-channel",
+            "text": "A Direct Message Channel is automatically created when you send a message to the Mr.Prog bot.  This channel allows you to download and upload customization files. It also helps prevent spamming the  #general  channel with everyone's  customize  commands.",
+            "title": "Direct Message Channel"
+        },
+        {
+            "location": "/channels/direct-message/#recognized-commands",
+            "text": "The following commands are recognized in the Direct Message Channel:   customize  save  load  stats  use  help  display  hey  jack",
+            "title": "Recognized Commands"
+        },
+        {
+            "location": "/channels/direct-message/#situation-responses",
+            "text": "In addition to responding to recognized commands, Mr.Prog will also use Direct Messages for the following situations:   Responding to you using the help command in another channel  Telling you that you need admin/mod privileges for a given command  Alerting you when your navi's online status changes (such as when you go offline/away/busy)",
+            "title": "Situation Responses"
+        },
+        {
+            "location": "/commands/help/",
+            "text": "Command: Help\n\n\nTBD\n\n\nUsage and Syntax\n\n\nHelp: Simple\n\n\n?>help\n\n\nTBD\n\n\nHelp: Channel\n\n\n?>help channel CHANNEL\n\n\nTBD\n\n\nHelp: Command\n\n\n?>help command COMMAND\n\n\nTBD",
+            "title": "help"
+        },
+        {
+            "location": "/commands/help/#command-help",
+            "text": "TBD",
+            "title": "Command: Help"
+        },
+        {
+            "location": "/commands/help/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/help/#help-simple",
+            "text": "?>help  TBD",
+            "title": "Help: Simple"
+        },
+        {
+            "location": "/commands/help/#help-channel",
+            "text": "?>help channel CHANNEL  TBD",
+            "title": "Help: Channel"
+        },
+        {
+            "location": "/commands/help/#help-command",
+            "text": "?>help command COMMAND  TBD",
+            "title": "Help: Command"
+        },
+        {
+            "location": "/commands/admin/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "admin"
+        },
+        {
+            "location": "/commands/admin/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/admin/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/admin/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/mod/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "mod"
+        },
+        {
+            "location": "/commands/mod/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/mod/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/mod/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/mention-mrprog/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "@MrProg"
+        },
+        {
+            "location": "/commands/mention-mrprog/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/mention-mrprog/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/mention-mrprog/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/mention-partner/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "@PartnerName"
+        },
+        {
+            "location": "/commands/mention-partner/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/mention-partner/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/mention-partner/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/create/",
+            "text": "Command: Create\n\n\nCreate a new partner netnavi, with optional parameters for name, variant, and base preset.  If you already have a partner, it will respond with its \nconfused\n dialogue.\n\n\nUsage and Syntax\n\n\nCreate: Simple\n\n\n?>create NAME BASE VARIANT\n\n\nCreate a new partner with the name NAME, using the preset settings of the variant VARIANT of the base preset BASE.\n\n\n\n\nVARIANT defaults to \ndefault\n\n\nBASE defaults to \nnormal\n\n\nNAME defaults to the name of the specified base-variant preset (like NormNav.EXE)",
+            "title": "create"
+        },
+        {
+            "location": "/commands/create/#command-create",
+            "text": "Create a new partner netnavi, with optional parameters for name, variant, and base preset.  If you already have a partner, it will respond with its  confused  dialogue.",
+            "title": "Command: Create"
+        },
+        {
+            "location": "/commands/create/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/create/#create-simple",
+            "text": "?>create NAME BASE VARIANT  Create a new partner with the name NAME, using the preset settings of the variant VARIANT of the base preset BASE.   VARIANT defaults to  default  BASE defaults to  normal  NAME defaults to the name of the specified base-variant preset (like NormNav.EXE)",
+            "title": "Create: Simple"
+        },
+        {
+            "location": "/commands/customize/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "customize"
+        },
+        {
+            "location": "/commands/customize/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/customize/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/customize/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/rename/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "rename"
+        },
+        {
+            "location": "/commands/rename/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/rename/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/rename/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/recolor/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "recolor"
+        },
+        {
+            "location": "/commands/recolor/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/recolor/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/recolor/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/save/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "save"
+        },
+        {
+            "location": "/commands/save/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/save/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/save/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/load/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "load"
+        },
+        {
+            "location": "/commands/load/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/load/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/load/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/hey/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "hey"
+        },
+        {
+            "location": "/commands/hey/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/hey/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/hey/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/jack/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "jack"
+        },
+        {
+            "location": "/commands/jack/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/jack/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/jack/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/display/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "display"
+        },
+        {
+            "location": "/commands/display/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/display/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/display/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/stats/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "stats"
+        },
+        {
+            "location": "/commands/stats/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/stats/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/stats/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        },
+        {
+            "location": "/commands/use/",
+            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "title": "use"
+        },
+        {
+            "location": "/commands/use/#command",
+            "text": "TBD",
+            "title": "Command:"
+        },
+        {
+            "location": "/commands/use/#usage-and-syntax",
+            "text": "",
+            "title": "Usage and Syntax"
+        },
+        {
+            "location": "/commands/use/#command-simple",
+            "text": "?>command  TBD",
+            "title": "Command: Simple"
+        }
+    ]
+}
