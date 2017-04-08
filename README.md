@@ -2,7 +2,7 @@
 A Discord bot themed for MMBN fans (or anyone who wants a bot friend)
 
 * [Video Demo](https://youtu.be/6LBBi2Ay8aY)
-* [Documentation and Help Guide](https://warped2713.gitbooks.io/mrprog/content/)
+* [Documentation and Help Guide](https://warped2713.github.io/mrprog/)
 * [Discord Test Server](https://discord.gg/An86Wxy)
 
 ## Dependencies
