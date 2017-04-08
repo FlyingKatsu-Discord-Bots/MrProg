@@ -1,0 +1,49 @@
+site_name: 'Mr. Prog Bot for Discord'
+site_url: 'https://warped2713.github.io/mrprog/'
+
+repo_url: 'https://github.com/Warped2713/mrprog/'
+repo_name: 'GitHub'
+
+site_description: "A Discord bot themed for MMBN fans (or anyone who wants a bot friend)"
+site_author: 'FlyingKatsu'
+copyright: "Project code and documentation © 2017 FlyingKatsu. <br/>All other intellectual property belongs to its respective owners, including (but not limited to) characters and sprites from the Mega Man Battle Network series which belongs to Capcom (who is in no way affiliated with this fan project)."
+
+remote_branch: 'gh-pages'
+remote_name: 'origin'
+
+pages:
+  - 'Home': 'index.md'
+  - 'Channels':
+    - 'General': 'channels/general.md'
+    - 'Info': 'channels/info.md'
+    - 'Shop': 'channels/shop.md'
+    - 'Battle': 'channels/battle.md'
+    - 'Debug': 'channels/debug.md'
+    - 'Direct Message': 'channels/direct-message.md'
+  - 'Command Index':
+    - 'help': 'commands/help.md'
+    - 'admin': 'commands/admin.md'
+    - 'mod': 'commands/mod.md'
+    - '@MrProg': 'commands/mention-mrprog.md'
+    - '@PartnerName': 'commands/mention-partner.md'
+    - 'create': 'commands/create.md'
+    - 'customize': 'commands/customize.md'
+    - 'rename': 'commands/rename.md'
+    - 'recolor': 'commands/recolor.md'
+    - 'save': 'commands/save.md'
+    - 'load': 'commands/load.md'
+    - 'hey': 'commands/hey.md'
+    - 'jack': 'commands/jack.md'
+    - 'display': 'commands/display.md'
+    - 'stats': 'commands/stats.md'
+    - 'use': 'commands/use.md'
+
+theme: 'readthedocs'
+
+docs_dir: 'docs'
+site_dir: 'site'
+
+extra:
+  version: 0.1.5
+
+dev_addr: '127.0.0.1:8000'

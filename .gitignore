@@ -12,3 +12,6 @@ v_*.*.*/**
 
 # Alternate skins (like Digimon or Super Smash Bros, instead of MMBN)
 skin_*/**
+
+# Exported site files using MkDocs build
+mkdocs/site/**
