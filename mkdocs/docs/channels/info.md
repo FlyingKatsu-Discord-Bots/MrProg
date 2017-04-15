@@ -1,3 +1,4 @@
+title_parent: #
 Description: The Info Channel is the place for Mr.Prog-related announcements, such as netalerts and server status.
 
 # Info Channel

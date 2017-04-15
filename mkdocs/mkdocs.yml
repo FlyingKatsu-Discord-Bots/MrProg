@@ -1,10 +1,10 @@
-site_name: 'Mr. Prog Bot for Discord'
+site_name: 'Mr.Prog Docs'
 site_url: 'https://warped2713.github.io/mrprog/'
 
 repo_url: 'https://github.com/Warped2713/mrprog/'
 repo_name: 'GitHub'
 
-site_description: "A Discord bot themed for MMBN fans (or anyone who wants a bot friend)"
+site_description: "Documentation for the Mr.Prog bot, an interactive MMBN-themed bot for Discord users."
 site_author: 'FlyingKatsu'
 copyright: "Project code and documentation © 2017 FlyingKatsu. <br/>All other intellectual property belongs to its respective owners, including (but not limited to) characters and sprites from the Mega Man Battle Network series which belongs to Capcom (who is in no way affiliated with this fan project)."
 
@@ -46,6 +46,7 @@ site_dir: 'site'
 
 extra:
   version: 0.1.5
-  embedIcon: 'http://pasteboard.co/4vZDSt93H.png'
+  embedIcon: 'https://cdn.pbrd.co/images/4vZDSt93H.png'
+  username: '@theflyingkatsu'
 
 dev_addr: '127.0.0.1:8000'

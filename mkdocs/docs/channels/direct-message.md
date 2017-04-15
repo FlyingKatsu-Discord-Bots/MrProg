@@ -1,3 +1,4 @@
+title_parent: #
 Description: A Direct Message Channel is automatically created when you send a message to the Mr.Prog bot.  This channel allows you to download and upload customization files. It also helps prevent spamming the [#general] channel with everyone's [customize] commands.
 
 # Direct Message Channel

@@ -1,3 +1,5 @@
+title_parent: Mr.Prog Documentation /
+
 # Mr.Prog Bot
 
 Mr.Prog Bot is a [Discord.js](https://discord.js.org/ "Check out the Discord.js API") bot for the [Discord chat client](https://discordapp.com/ "Check out the Discord App website"). Mr.Prog is an interactive bot that enables members of your Discord server to create, customize, and interact with their own personal NetNavi.

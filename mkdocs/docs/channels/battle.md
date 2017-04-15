@@ -1,3 +1,4 @@
+title_parent: #
 Description: The Battle Channel is the place for watching battles and issuing/responding to battle challenges. 
 
 # Battle Channel

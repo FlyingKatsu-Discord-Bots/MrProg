@@ -18,12 +18,26 @@ the blocks defined in base.html and its included child templates.
   {% if page and not page.is_homepage and page.meta.description %}<meta name="description" content="{{ page.meta.description[0] }}">{% endif %}
   {% if config.extra.version %}<meta name="revision" content="{{ config.extra.version }}">{% endif %}
   {% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
-  {# Required for oEmbeds #}
-  <meta property="og:title" content="{{ page.title }}">
+  
+  {# OpenGraph Tags #}
+  <meta property="og:title" content="{% if page.meta.title_parent %}{{ page.meta.title_parent[0] }}{% endif %}{{ page.title }}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{ config.extra.embedIcon }}">
   <meta property="og:url" content="{{ page.canonical_url }}">
-  {# End Required for oEmbeds #}
+  {# Extra OpenGraph Tags #}
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  {% if page and not page.is_homepage and page.meta.description %} <meta property="og:description" content="{{ page.meta.description[0] }}">{% endif %}
+  {% if page and page.is_homepage %}<meta property="og:description" content="{{ config.site_description }}">{% endif %}
+  {# End OpenGraph Tags #}
+
+  {# Twitter Summary Card #}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="{{ config.extra.username }}" />
+  <meta name="twitter:title" content="{% if page.meta.title_parent %}{{ page.meta.title_parent[0] }}{% endif %}{{ page.title }}" />
+  {% if page and not page.is_homepage and page.meta.description %} <meta name="twitter:description" content="{{ page.meta.description[0] }}">{% endif %}
+  {% if page and page.is_homepage %}<meta name="twitter:description" content="{{ config.site_description }}">{% endif %}
+  {# End Twitter Summary Card #}
+  
   {% if config.site_favicon %}<link rel="shortcut icon" href="{{ base_url }}/{{ config.site_favicon }}">
   {% else %}<link rel="shortcut icon" href="{{ base_url }}/img/favicon.ico">{% endif %}
 {%- endblock %}

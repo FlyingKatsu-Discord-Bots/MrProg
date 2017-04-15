@@ -1,3 +1,4 @@
+title_parent: #
 Description: The General Channel is the main place for you to interact with other netnavis and netops.
 
 # General Channel

@@ -1,3 +1,6 @@
+title_parent: ?>
+Description: Changes as of Version 0.1.5:  Instead of sending long detailed messages, the help command now responds with a link to the appropriate page in these docs, along with the user's access level (anyone, netop, mod, or admin). Additionally, the help command now responds to the same channel where it is invoked, instead of responding only by direct message.
+
 # Command: Help
 
 Mr.Prog will send a direct message to you, with a list of all available commands, or a detailed description of a specific command.
