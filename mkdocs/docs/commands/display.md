@@ -1,3 +1,6 @@
+title_parent: ?>
+Description: Post the profile of the specified netnavi in the current channel. If no netnavi is specified, it defaults to the user's primary partner.  Profile info includes customizable properties, currency, online status, equipment, and battle stats.
+
 # Command: Display
 
 The display command will post the profile of the specified netnavi in the current channel. If no netnavi is specified, it defaults to the user's primary partner.

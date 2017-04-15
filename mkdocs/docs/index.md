@@ -1,4 +1,4 @@
-title_parent: Mr.Prog Documentation /
+title_parent: Mr.Prog Documentation/
 
 # Mr.Prog Bot
 

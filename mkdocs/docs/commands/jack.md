@@ -1,3 +1,6 @@
+title_parent: ?>
+Description: Take your partner navi online or offline.
+
 # Command: 
 
 TBD

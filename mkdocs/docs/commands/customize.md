@@ -1,3 +1,6 @@
+title_parent: ?>
+Description: Customize your partner's name, appearance, and dialogue.
+
 # Command: 
 
 TBD
