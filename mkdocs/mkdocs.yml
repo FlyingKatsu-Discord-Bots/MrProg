@@ -40,6 +40,7 @@ pages:
 
 theme: 'readthedocs'
 
+theme_dir: 'themes/readthedocs'
 docs_dir: 'docs'
 site_dir: 'site'
 

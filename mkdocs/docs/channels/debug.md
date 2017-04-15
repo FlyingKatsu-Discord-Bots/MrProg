@@ -1,3 +1,5 @@
+Description: The Debug Channel is meant to be an admin/mod-only channel for debug messages, bot configuration, managing partner navi customizations, and testing features. 
+
 # Debug Channel
 
 The Debug Channel is meant to be an admin/mod-only channel for debug messages, bot configuration, managing partner navi customizations, and testing features. 
