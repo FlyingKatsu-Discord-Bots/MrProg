@@ -46,5 +46,6 @@ site_dir: 'site'
 
 extra:
   version: 0.1.5
+  embedIcon: 'http://pasteboard.co/4vZDSt93H.png'
 
 dev_addr: '127.0.0.1:8000'
