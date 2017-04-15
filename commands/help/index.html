@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  
+  <meta name="revision" content="0.1.5">
   <meta name="author" content="FlyingKatsu">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>help - Mr. Prog Bot for Discord</title>
@@ -96,7 +98,11 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#changes-as-of-version-015">Changes as of Version 0.1.5+</a></li>
+        
             <li><a class="toctree-l4" href="#usage-and-syntax">Usage and Syntax</a></li>
+        
+            <li><a class="toctree-l4" href="#permissions">Permissions</a></li>
         
         </ul>
     
@@ -194,8 +200,9 @@
     
     <li>help</li>
     <li class="wy-breadcrumbs-aside">
+      Version 0.1.5
       
-        <a href="https://github.com/Warped2713/mrprog/edit/master/docs/commands\help.md"
+         | <a href="https://github.com/Warped2713/mrprog/edit/master/docs/commands\help.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -206,17 +213,49 @@
             <div class="section">
               
                 <h1 id="command-help">Command: Help</h1>
-<p>TBD</p>
+<p>Mr.Prog will send a direct message to you, with a list of all available commands, or a detailed description of a specific command.</p>
+<h2 id="changes-as-of-version-015">Changes as of Version 0.1.5+</h2>
+<p>Instead of sending long detailed messages, the help command now responds with a link to the appropriate page in these docs, along with the user's access level (anyone, netop, mod, or admin).</p>
+<p>Additionally, the help command now responds to the same channel where it is invoked, instead of responding only by direct message.</p>
 <h2 id="usage-and-syntax">Usage and Syntax</h2>
 <h3 id="help-simple">Help: Simple</h3>
 <p><code>?&gt;help</code></p>
-<p>TBD</p>
+<p>Responds with a list of all commands available for the current channel, along with access levels for each command.</p>
 <h3 id="help-channel">Help: Channel</h3>
 <p><code>?&gt;help channel CHANNEL</code></p>
-<p>TBD</p>
+<p>Responds with a list of all commands recognized by the specified CHANNEL.</p>
 <h3 id="help-command">Help: Command</h3>
 <p><code>?&gt;help command COMMAND</code></p>
-<p>TBD</p>
+<p>Responds with a detailed description of the specifed command, similar to what's written in these docs.</p>
+<h2 id="permissions">Permissions</h2>
+<p>This command is recognized in the following channels for the specified access levels:</p>
+<ul>
+<li><a href="../../channels/general/" title="General Channel">#general</a><ul>
+<li>Anyone</li>
+</ul>
+</li>
+<li><a href="../../channels/shop/" title="Shop Channel">#shop</a><ul>
+<li>Netops</li>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/battle/" title="Battle Channel">#battle</a><ul>
+<li>Netops</li>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/debug/" title="Debug Channel">#debug</a><ul>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/direct-message/" title="Direct Messages">#direct-message</a><ul>
+<li>Anyone</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

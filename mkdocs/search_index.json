@@ -162,13 +162,18 @@
         },
         {
             "location": "/commands/help/",
-            "text": "Command: Help\n\n\nTBD\n\n\nUsage and Syntax\n\n\nHelp: Simple\n\n\n?>help\n\n\nTBD\n\n\nHelp: Channel\n\n\n?>help channel CHANNEL\n\n\nTBD\n\n\nHelp: Command\n\n\n?>help command COMMAND\n\n\nTBD",
+            "text": "Command: Help\n\n\nMr.Prog will send a direct message to you, with a list of all available commands, or a detailed description of a specific command.\n\n\nChanges as of Version 0.1.5+\n\n\nInstead of sending long detailed messages, the help command now responds with a link to the appropriate page in these docs, along with the user's access level (anyone, netop, mod, or admin).\n\n\nAdditionally, the help command now responds to the same channel where it is invoked, instead of responding only by direct message.\n\n\nUsage and Syntax\n\n\nHelp: Simple\n\n\n?>help\n\n\nResponds with a list of all commands available for the current channel, along with access levels for each command.\n\n\nHelp: Channel\n\n\n?>help channel CHANNEL\n\n\nResponds with a list of all commands recognized by the specified CHANNEL.\n\n\nHelp: Command\n\n\n?>help command COMMAND\n\n\nResponds with a detailed description of the specifed command, similar to what's written in these docs.\n\n\nPermissions\n\n\nThis command is recognized in the following channels for the specified access levels:\n\n\n\n\n#general\n\n\nAnyone\n\n\n\n\n\n\n#shop\n\n\nNetops\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#battle\n\n\nNetops\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#debug\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#direct-message\n\n\nAnyone",
             "title": "help"
         },
         {
             "location": "/commands/help/#command-help",
-            "text": "TBD",
+            "text": "Mr.Prog will send a direct message to you, with a list of all available commands, or a detailed description of a specific command.",
             "title": "Command: Help"
+        },
+        {
+            "location": "/commands/help/#changes-as-of-version-015",
+            "text": "Instead of sending long detailed messages, the help command now responds with a link to the appropriate page in these docs, along with the user's access level (anyone, netop, mod, or admin).  Additionally, the help command now responds to the same channel where it is invoked, instead of responding only by direct message.",
+            "title": "Changes as of Version 0.1.5+"
         },
         {
             "location": "/commands/help/#usage-and-syntax",
@@ -177,18 +182,23 @@
         },
         {
             "location": "/commands/help/#help-simple",
-            "text": "?>help  TBD",
+            "text": "?>help  Responds with a list of all commands available for the current channel, along with access levels for each command.",
             "title": "Help: Simple"
         },
         {
             "location": "/commands/help/#help-channel",
-            "text": "?>help channel CHANNEL  TBD",
+            "text": "?>help channel CHANNEL  Responds with a list of all commands recognized by the specified CHANNEL.",
             "title": "Help: Channel"
         },
         {
             "location": "/commands/help/#help-command",
-            "text": "?>help command COMMAND  TBD",
+            "text": "?>help command COMMAND  Responds with a detailed description of the specifed command, similar to what's written in these docs.",
             "title": "Help: Command"
+        },
+        {
+            "location": "/commands/help/#permissions",
+            "text": "This command is recognized in the following channels for the specified access levels:   #general  Anyone    #shop  Netops  Mods  Admins    #battle  Netops  Mods  Admins    #debug  Mods  Admins    #direct-message  Anyone",
+            "title": "Permissions"
         },
         {
             "location": "/commands/admin/",
@@ -432,23 +442,28 @@
         },
         {
             "location": "/commands/display/",
-            "text": "Command:\n\n\nTBD\n\n\nUsage and Syntax\n\n\nCommand: Simple\n\n\n?>command\n\n\nTBD",
+            "text": "Command: Display\n\n\nThe display command will post the profile of the specified netnavi in the current channel. If no netnavi is specified, it defaults to the user's primary partner.\n\n\n\n\nStandard Details\n\n\nName\n\n\nMood\n\n\nAvatar\n\n\nColor\n\n\nCurrency counts\n\n\n\n\n\n\nAdditional Details\n\n\nDate Created\n\n\nOnline Status\n\n\nAbility\n\n\nInstalled Upgrades\n\n\nFrequent Battle Chips\n\n\nBattle Stats\n\n\n\n\n\n\n\n\nChanges as of Version 0.5.0+\n\n\nThis command is introduced in Version 0.5.0.\n\n\nUsage and Syntax\n\n\n?>display NAME UID\n\n\nNAME is the netnavi's name. Defaults to the user's primary partner name.\nUID is the unique identifier for the given NAME.  Defaults to 0, or to the user's primary partner identifier if no name is given.\n\n\nRestrictions\n: A user may keep their partner profile private by disabling the public option with \ncustomize\n.\n\n\nPermissions\n\n\nThis command is recognized in the following channels for the specified access levels:\n\n\n\n\n#general\n\n\nAnyone\n\n\n\n\n\n\n#shop\n\n\nNetops\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#battle\n\n\nNetops\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#debug\n\n\nMods\n\n\nAdmins\n\n\n\n\n\n\n#direct-message\n\n\nAnyone",
             "title": "display"
         },
         {
-            "location": "/commands/display/#command",
-            "text": "TBD",
-            "title": "Command:"
+            "location": "/commands/display/#command-display",
+            "text": "The display command will post the profile of the specified netnavi in the current channel. If no netnavi is specified, it defaults to the user's primary partner.   Standard Details  Name  Mood  Avatar  Color  Currency counts    Additional Details  Date Created  Online Status  Ability  Installed Upgrades  Frequent Battle Chips  Battle Stats",
+            "title": "Command: Display"
+        },
+        {
+            "location": "/commands/display/#changes-as-of-version-050",
+            "text": "This command is introduced in Version 0.5.0.",
+            "title": "Changes as of Version 0.5.0+"
         },
         {
             "location": "/commands/display/#usage-and-syntax",
-            "text": "",
+            "text": "?>display NAME UID  NAME is the netnavi's name. Defaults to the user's primary partner name.\nUID is the unique identifier for the given NAME.  Defaults to 0, or to the user's primary partner identifier if no name is given.  Restrictions : A user may keep their partner profile private by disabling the public option with  customize .",
             "title": "Usage and Syntax"
         },
         {
-            "location": "/commands/display/#command-simple",
-            "text": "?>command  TBD",
-            "title": "Command: Simple"
+            "location": "/commands/display/#permissions",
+            "text": "This command is recognized in the following channels for the specified access levels:   #general  Anyone    #shop  Netops  Mods  Admins    #battle  Netops  Mods  Admins    #debug  Mods  Admins    #direct-message  Anyone",
+            "title": "Permissions"
         },
         {
             "location": "/commands/stats/",

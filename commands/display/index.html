@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  
+  <meta name="revision" content="0.1.5">
   <meta name="author" content="FlyingKatsu">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>display - Mr. Prog Bot for Discord</title>
@@ -144,11 +146,15 @@
     <a class="current" href="./">display</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#command">Command:</a></li>
+    <li class="toctree-l3"><a href="#command-display">Command: Display</a></li>
     
         <ul>
         
+            <li><a class="toctree-l4" href="#changes-as-of-version-050">Changes as of Version 0.5.0+</a></li>
+        
             <li><a class="toctree-l4" href="#usage-and-syntax">Usage and Syntax</a></li>
+        
+            <li><a class="toctree-l4" href="#permissions">Permissions</a></li>
         
         </ul>
     
@@ -194,8 +200,9 @@
     
     <li>display</li>
     <li class="wy-breadcrumbs-aside">
+      Version 0.1.5
       
-        <a href="https://github.com/Warped2713/mrprog/edit/master/docs/commands\display.md"
+         | <a href="https://github.com/Warped2713/mrprog/edit/master/docs/commands\display.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -205,12 +212,63 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="command">Command:</h1>
-<p>TBD</p>
+                <h1 id="command-display">Command: Display</h1>
+<p>The display command will post the profile of the specified netnavi in the current channel. If no netnavi is specified, it defaults to the user's primary partner.</p>
+<ul>
+<li><strong>Standard Details</strong><ul>
+<li>Name</li>
+<li>Mood</li>
+<li>Avatar</li>
+<li>Color</li>
+<li>Currency counts</li>
+</ul>
+</li>
+<li><strong>Additional Details</strong><ul>
+<li>Date Created</li>
+<li>Online Status</li>
+<li>Ability</li>
+<li>Installed Upgrades</li>
+<li>Frequent Battle Chips</li>
+<li>Battle Stats</li>
+</ul>
+</li>
+</ul>
+<h2 id="changes-as-of-version-050">Changes as of Version 0.5.0+</h2>
+<p>This command is introduced in Version 0.5.0.</p>
 <h2 id="usage-and-syntax">Usage and Syntax</h2>
-<h3 id="command-simple">Command: Simple</h3>
-<p><code>?&gt;command</code></p>
-<p>TBD</p>
+<p><code>?&gt;display NAME UID</code></p>
+<p>NAME is the netnavi's name. Defaults to the user's primary partner name.
+UID is the unique identifier for the given NAME.  Defaults to 0, or to the user's primary partner identifier if no name is given.</p>
+<p><strong>Restrictions</strong>: A user may keep their partner profile private by disabling the public option with <a href="../customize/">customize</a>.</p>
+<h2 id="permissions">Permissions</h2>
+<p>This command is recognized in the following channels for the specified access levels:</p>
+<ul>
+<li><a href="../../channels/general/" title="General Channel">#general</a><ul>
+<li>Anyone</li>
+</ul>
+</li>
+<li><a href="../../channels/shop/" title="Shop Channel">#shop</a><ul>
+<li>Netops</li>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/battle/" title="Battle Channel">#battle</a><ul>
+<li>Netops</li>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/debug/" title="Debug Channel">#debug</a><ul>
+<li>Mods</li>
+<li>Admins</li>
+</ul>
+</li>
+<li><a href="../../channels/direct-message/" title="Direct Messages">#direct-message</a><ul>
+<li>Anyone</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>
