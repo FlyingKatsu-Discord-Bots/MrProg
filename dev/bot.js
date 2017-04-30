@@ -333,6 +333,9 @@ var COMMAND = {
     SERVER.channels.debug
       .sendEmbed( FORMAT.embed( { desc: `This is just a test.` } ) )
       .catch(console.log);
+    NPC.guide.sendMessage( CLIENT, "[test] HI I AM GOLD MR.PROG AND I CAN TELL YOU HOW TO DO STUFF" );
+    NPC.announcer.sendMessage( CLIENT, "[test] Hello, I am the NetOfficial for NetBattles." );
+    NPC.dealer.sendMessage( CLIENT, "[test] Hey, wanna buy something? JUST KIDDING. I don't have anything yet." );
   },
   clear: function(msg, args) {
     // TODO: Check user individual permissions to delete messages

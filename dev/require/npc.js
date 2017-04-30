@@ -3,6 +3,7 @@
 // ===============================================
 var FactoryNPC = function( input ) {
   this.name = input.name || "NPC";
+  this.webhookID = input.webhookID || "308032162735587328";
   this.color = input.color || {
     normal: "#70C040",
     warning: "#FAA61A",
@@ -39,6 +40,11 @@ FactoryNPC.prototype.getDialogue = function( situation ) {
     return this.dialogue[situation];
   }
 };
+FactoryNPC.prototype.sendMessage = function( client, msg ) {
+  client.fetchWebhook(this.webhookID)
+    .then( (webhook) => webhook.sendMessage(msg))
+    .catch( console.error );
+}
 
 
 // ===============================================
@@ -51,6 +57,7 @@ var NPC = {
   // Main responder for the bot
   guide: new FactoryNPC ( {
     name: "Mr.Prog",
+    webhookID: "308032162735587328",
     dialogue: {
       tips_battle: "This is the battle channel! It's still under construction...",
       tips_shop: "This is the shop channel! It's still under construction...",
@@ -65,6 +72,7 @@ var NPC = {
   // Battle responder for the bot
   announcer: new FactoryNPC ( {
     name: "NetOfficial",
+    webhookID: "308032053436481536",
     color: {
       normal: "#609088",
       warning: "#E07828",
@@ -85,6 +93,7 @@ var NPC = {
   // Shop responder for the bot
   dealer: new FactoryNPC ( {
     name: "NetDealer",
+    webhookID: "308032117072330752",
     color: {
       normal: "#7840A8",
       warning: "#DF6777",
