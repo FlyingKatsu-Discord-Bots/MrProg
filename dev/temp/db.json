@@ -1,0 +1,204 @@
+[
+  [
+    "228690694485573632",
+    {
+      "xp": 0,
+      "mood": 1,
+      "numResets": 0,
+      "zenny": 0,
+      "bugfrag": 0,
+      "custom": {
+        "name": null,
+        "img": null,
+        "color": null,
+        "capacity": null,
+        "alignment": null,
+        "personality": null,
+        "modifiers": {
+          "greeting": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "feeling": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "netalert": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "herosuccess": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "herofailure": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "accepts": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "declines": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "wins": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "loses": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "battles": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "cheats": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "bails": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "confused": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "fakenod": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "comfort": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "customized": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          },
+          "stats": {
+            "mod": null,
+            "dialogue": {
+              "happy": null,
+              "content": null,
+              "okay": null,
+              "withdrawn": null,
+              "upset": null
+            }
+          }
+        },
+        "phrases": null
+      },
+      "owner": {
+        "id": "228690694485573632",
+        "username": "FlyingKatsu",
+        "discriminator": "8286",
+        "avatar": "2902ef7bcd28cdaa061f9c00deb2e8c9",
+        "bot": false,
+        "lastMessageID": "308092736769228800"
+      },
+      "presetKey": 1,
+      "variantKey": "default",
+      "level": 0
+    }
+  ]
+]

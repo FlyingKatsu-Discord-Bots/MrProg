@@ -1140,6 +1140,20 @@ CLIENT.on('disconnect', closeEvent => {
   let d = new Date();
   console.log(d.toLocaleString());
   disconnected = true;
+  
+  // Attempt at saving data
+  FS.writeFile( 
+    "temp/db.json", 
+    JSON.stringify([...allPartners], null, 2).replace(COMMONREGEX.newline,"\r\n"),
+    (error) => {
+      if (error) console.error(error);
+      console.log("Writing...");
+      console.log("ERROR: " + error);
+      console.log("Done writing!");
+  });
+  // TODO: make sure all this other stuff happens when filesaving is over
+  console.log("after file saving...");
+  
   CLIENT.user.setAFK(true);
   CLIENT.user.setStatus('dnd');
   CLIENT.user.setGame("Unexpected Disconnect!");
@@ -1177,6 +1191,19 @@ CLIENT.on('error', error => {
 
 // Initialization Procedure
 CLIENT.on( 'ready', () => {
+  
+  console.log("before reading");
+  
+  // Load saved data  
+  FS.readFileSync("temp/db.json", "utf8",(err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    console.log(data);
+    //allPartners = new Map(JSON.parse(data));
+  });
+  
+  console.log("after reading");
   
   if (disconnected) { // quietly handle recovery
     let d = new Date();
