@@ -42,6 +42,27 @@ String.prototype.strip = function(v) {
 // =========================================================
 var allPartners = new Map();
 var disconnected = false;
+var disconnectHandled = false;
+var readyMsg = "";
+
+
+var checkDisconnect = function() {
+  //console.log("### Routine check client.status: " + CLIENT.status + "; uptime: " + CLIENT.uptime);
+  // if connection is lost, 
+  if ( !disconnectHandled && CLIENT.status == 5 ) {
+    // cancel interval (Doesn't work yet)
+    //clearInterval( interval_dc );
+    // set disconnectHandled
+    disconnectHandled = true;
+    // set Mr.Prog's ready message to "Recovering from unexpected shutdown"
+    readyMsg = `${SERVER.roles.partnered} ${CONFIG.botname} has been restarted.  Any unprocessed commands sent before this message will need to be resubmitted.`;
+    // try to login again (when ready, set interval again) 
+    CLIENT.login(SECRET.tk);
+  }
+}
+
+// Set a timeout for 120000 or 2 minutes  OR 3000 for 3sec
+var interval_dc = setInterval( checkDisconnect, 3000 );
 
 // =========================================================
 //  UTILITY FUNCTIONS
@@ -293,17 +314,20 @@ var UTIL = {
 if (Object.freeze) Object.freeze(UTIL);
 
 var COMMAND = {
-  // Admin / Mod Functions
+  
   shutdown: function(msg, args, useOC) {
     SERVER.channels.main
       .sendMessage(`${SERVER.roles.partnered} ${CONFIG.botname} is shutting down at ${msg.author}'s request`)
+      .then(
+        function() {
+          CLIENT.destroy()
+          .catch( console.error );
+        },
+        function (error) {
+          console.log(error);
+          msg.reply("Failed to shutdown the bot. Have the bot admin check the console for error specifics.");
+        } )
       .catch(console.log);
-    CLIENT.destroy()
-      .catch( console.error );
-        /*function (error) {
-        console.log(error);
-        msg.reply("Failed to shutdown the bot. Have the bot admin check the console for error specifics.");
-      } );*/
   },
   test: function(msg, args) {
     SERVER.channels.debug
@@ -1112,15 +1136,19 @@ CLIENT.on('guildMemberAvailable', () => {
 CLIENT.on('disconnect', closeEvent => {
   let d = new Date();
   console.log(d.toLocaleString());
-  if (closeEvent) {
-    console.log('Mr.Prog went offline with code ' + closeEvent.code);
-  } else {
-    console.log('Mr.Prog went offline with unknown code');
-  }
   disconnected = true;
   CLIENT.user.setAFK(true);
   CLIENT.user.setStatus('dnd');
   CLIENT.user.setGame("Unexpected Disconnect!");
+  if (closeEvent) {
+    console.log('Mr.Prog went offline with code ' + closeEvent.code);
+    console.log("Exiting...");
+    console.log(CLIENT.status);
+    process.exitCode = 0;
+    return; // stop doing stuff
+  } else {
+    console.log('Mr.Prog went offline with unknown code');
+  }
 });
 CLIENT.on('reconnecting', () => {
   let d = new Date();
@@ -1147,7 +1175,7 @@ CLIENT.on('error', error => {
 // Initialization Procedure
 CLIENT.on( 'ready', () => {
   
-  if (disconnected) {
+  if (disconnected) { // quietly handle recovery
     let d = new Date();
     console.log(d.toLocaleString());
     console.log("RECOVERED from D/C");
@@ -1155,6 +1183,8 @@ CLIENT.on( 'ready', () => {
     CLIENT.user.setAFK(false);
     CLIENT.user.setStatus('online');
     CLIENT.user.setGame(CONFIG.game);
+    
+    disconnected = false;
     
   } else {
     let d = new Date();
@@ -1171,15 +1201,21 @@ CLIENT.on( 'ready', () => {
     }
 
     if ( SERVER.isValid ) {
-      SERVER.channels.main.sendMessage(
-        `${SERVER.roles.partnered} ${CONFIG.botname} is now online!`
-      ).catch(console.log);
+      readyMsg = readyMsg || `${SERVER.roles.partnered} ${CONFIG.botname} is now online!`;
+      SERVER.channels.main.sendMessage( readyMsg ).catch(console.log);
       CLIENT.user.setStatus('online');
     } else {
       console.log("INVALID SERVER OR CHANNEL IDs. SHUTTING DOWN!");
       CLIENT.destroy().catch(console.log);
-    } 
+    }
   }
+  
+  if (disconnectHandled) { // declare recovery
+    //interval_dc = setInterval( checkDisconnect, 3000 );
+    disconnectHandled = false;
+    SERVER.channels.main.sendMessage( readyMsg ).catch(console.log);
+  }
+  
 } );
 
 // Message Handling
