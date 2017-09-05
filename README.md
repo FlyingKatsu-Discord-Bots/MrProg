@@ -2,7 +2,7 @@
 A Discord bot themed for MMBN fans (or anyone who wants a bot friend)
 
 * [Video Demo](https://youtu.be/6LBBi2Ay8aY)
-* [Documentation and Help Guide](https://flyingkatsu.github.io/mrprog/)
+* [Documentation and Help Guide](https://flyingkatsu-discord-bots.github.io/MrProg/)
 * [Discord Test Server](https://discord.gg/An86Wxy)
 
 ## Dependencies
