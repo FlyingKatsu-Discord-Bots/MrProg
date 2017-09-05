@@ -3,6 +3,7 @@ site_url: 'https://flyingkatsu-discord-bots.github.io/MrProg/'
 
 repo_url: 'https://github.com/FlyingKatsu-Discord-Bots/MrProg/'
 repo_name: 'GitHub'
+edit_uri: edit/master/mkdocs/docs/
 
 site_description: "Documentation for the Mr.Prog bot, an interactive MMBN-themed bot for Discord users."
 site_author: 'FlyingKatsu'
