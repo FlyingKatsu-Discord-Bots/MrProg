@@ -1,7 +1,7 @@
 site_name: 'Mr.Prog Docs'
-site_url: 'https://warped2713.github.io/mrprog/'
+site_url: 'https://flyingkatsu-discord-bots.github.io/MrProg/'
 
-repo_url: 'https://github.com/Warped2713/mrprog/'
+repo_url: 'https://github.com/FlyingKatsu-Discord-Bots/MrProg/'
 repo_name: 'GitHub'
 
 site_description: "Documentation for the Mr.Prog bot, an interactive MMBN-themed bot for Discord users."

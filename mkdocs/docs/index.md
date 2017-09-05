@@ -32,7 +32,7 @@ Mr.Prog Bot is a [Discord.js](https://discord.js.org/ "Check out the Discord.js 
 
 If you have a great idea for an extension or feature, let me know on my development server: [discord.gg/9TVVmTY](/discord.gg/9TVVmTY "Join our Discord server")
 
-If you want to develop add-ons yourself, fork the [Mr.Prog GitHub repository](https://github.com/Warped2713/mrprog/ "Go to the GitHub repository for Mr.Prog bot") so I can see it!
+If you want to develop add-ons yourself, fork the [Mr.Prog GitHub repository](https://github.com/FlyingKatsu-Discord-Bots/MrProg "Go to the GitHub repository for Mr.Prog bot") so I can see it!
 
 
 ## Disclaimer
